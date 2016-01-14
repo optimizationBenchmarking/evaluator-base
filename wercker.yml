@@ -1,7 +1,7 @@
 ##
 ## Build with Wercker
 ##
-## https://app.wercker.com/#applications/TODO
+## https://app.wercker.com/#applications/56981ef655813dda3b07c3fb
 #
 box: guligo/jdk-maven-ant
 #
