@@ -36,7 +36,7 @@ import org.optimizationBenchmarking.utils.reflection.EPrimitiveType;
 import shared.junit.InstanceTest;
 import test.junit.org.optimizationBenchmarking.utils.collections.lists.ArrayListViewTestBase;
 
-/** A class for creating experiment sets */
+/** A class for testing experiment sets */
 @Ignore
 public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
 
