@@ -64,7 +64,7 @@ PST extends IPropertySetting> extends //
    *          the values
    * @return the setting
    */
-  @SuppressWarnings({ "rawtypes", "unused" })
+  @SuppressWarnings({ "rawtypes", "unused", "unchecked" })
   private final PST __createSettingFromIterable(final Iterable values) {
     final ArrayListView<? extends PT> data;
     final IPropertyValue[] array;
@@ -102,9 +102,16 @@ PST extends IPropertySetting> extends //
 
       prop = this.find(name);
       if (prop == null) {
-        throw new IllegalArgumentException(((//
-        "Could not find any property with name '" //$NON-NLS-1$
-            + name) + '\'') + '.');
+        if (this.m_shadowDelegate != null) {
+          prop = ((PT) (this.m_shadowDelegate.find(name)));
+        }
+        if (prop == null) {
+          prop = ((PT) (this.m_shadowUnpacked.find(name)));
+
+          throw new IllegalArgumentException(((//
+          "Could not find any property with name '" //$NON-NLS-1$
+              + name) + '\'') + '.');
+        }
       }
 
       if (done.add(prop)) {

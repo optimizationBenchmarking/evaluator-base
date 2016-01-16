@@ -1,5 +1,6 @@
 package shared.junit.org.optimizationBenchmarking.evaluator.attributes;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.optimizationBenchmarking.evaluator.data.spec.Attribute;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
@@ -21,19 +22,20 @@ public class ExperimentSetAttributeTest<RT> extends
    *
    * @param attribute
    *          the attribute to test
-   * @param isSingleton
-   *          is the attribute a singleton?
    */
   public ExperimentSetAttributeTest(
-      final Attribute<? super IExperimentSet, ? extends RT> attribute,
-      final boolean isSingleton) {
-    super(attribute, isSingleton);
+      final Attribute<? super IExperimentSet, ? extends RT> attribute) {
+    super(attribute);
   }
 
   /** {@inheritDoc} */
   @Override
   protected void testOnExperimentSet(final IExperimentSet data) {
-    this.checkResult(
-        this.getInstance().get(data, TestBase.getNullLogger()));
+    final Attribute<? super IExperimentSet, ? extends RT> attribute;
+
+    attribute = this.getAttribute(data);
+    Assert.assertNotNull(attribute);
+    this.checkResult(attribute, data,
+        attribute.get(data, TestBase.getNullLogger()));
   }
 }

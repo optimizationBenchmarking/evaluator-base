@@ -13,7 +13,6 @@ import examples.org.optimizationBenchmarking.evaluator.dataAndIO.BBOBExample;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.TSPSuiteExample;
-import shared.junit.InstanceTest;
 import shared.junit.TestBase;
 
 /**
@@ -28,28 +27,41 @@ import shared.junit.TestBase;
  */
 @Ignore
 public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attribute<? super ST, ? extends RT>>
-    extends InstanceTest<AT> {
+    extends TestBase {
+
+  /** the attribute */
+  private final AT m_attribute;
 
   /**
    * Create the test.
    *
    * @param attribute
    *          the attribute to test
-   * @param isSingleton
-   *          is the attribute a singleton?
    */
-  public AttributeTest(final AT attribute, final boolean isSingleton) {
-    super(null, attribute, isSingleton, false);
+  public AttributeTest(final AT attribute) {
+    super();
+    this.m_attribute = attribute;
+  }
+
+  /**
+   * Get the instance of the attribute applicable to the given data
+   *
+   * @param data
+   *          the data
+   * @return the attribute
+   */
+  protected AT getAttribute(final ST data) {
+    return this.m_attribute;
   }
 
   /**
    * Test the attribute on the given data set. This method is supposed to
    * invoke the attribute and check it's output via
-   * {@link #checkResult(Object)}
+   * {@link #checkResult(Attribute,IDataElement,Object)}
    *
    * @param data
    *          the data set
-   * @see #checkResult(Object)
+   * @see #checkResult(Attribute,IDataElement,Object)
    */
   protected abstract void testOnExperimentSet(final IExperimentSet data);
 
@@ -76,10 +88,15 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
   /**
    * This method tests whether the result produced by the attribute is OK
    *
+   * @param attribute
+   *          the attribute
+   * @param input
+   *          the input data
    * @param result
    *          the result
    */
-  protected void checkResult(final RT result) {
+  protected void checkResult(final AT attribute, final ST input,
+      final RT result) {
     Assert.assertNotNull(result);
   }
 

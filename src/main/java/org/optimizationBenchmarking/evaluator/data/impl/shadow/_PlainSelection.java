@@ -44,16 +44,17 @@ abstract class _PlainSelection<ST extends IElementSet, ET extends IDataElement>
   /** {@inheritDoc} */
   @Override
   final ST _compile() {
-    final int size;
+    // final int size;
 
     if ((this.m_selection == null)
-        || ((size = this.m_selection.size()) <= 0)) {
+        || ((/* size = */this.m_selection.size()) <= 0)) {
       return null;
     }
 
-    if (this.m_set.getData().size() <= size) {
-      return this.m_set;
-    }
+    // In order to avoid potential strange effects, we always shaddow.
+    // if (this.m_set.getData().size() <= size) {
+    // return this.m_set;
+    // }
 
     return this._shadow(this.m_set, this.m_selection);
   }
