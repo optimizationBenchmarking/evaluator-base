@@ -11,6 +11,7 @@ import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
 
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.BBOBExample;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.TSPSuiteExample;
 import shared.junit.InstanceTest;
 import shared.junit.TestBase;
@@ -44,11 +45,11 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
   /**
    * Test the attribute on the given data set. This method is supposed to
    * invoke the attribute and check it's output via
-   * {@link #assertResult(Object)}
+   * {@link #checkResult(Object)}
    *
    * @param data
    *          the data set
-   * @see #assertResult(Object)
+   * @see #checkResult(Object)
    */
   protected abstract void testOnExperimentSet(final IExperimentSet data);
 
@@ -78,7 +79,7 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
    * @param result
    *          the result
    */
-  protected void assertResult(final RT result) {
+  protected void checkResult(final RT result) {
     Assert.assertNotNull(result);
   }
 
@@ -115,6 +116,16 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
   public void testAttributeOnTSPSuite() {
     if (this.canUseAttribute()) {
       this.__testOnCallable(new TSPSuiteExample(TestBase.getNullLogger()));
+    }
+  }
+
+  /**
+   * Test the attribute's functionality on random data
+   */
+  @Test(timeout = 3600000)
+  public void testAttributeOnRandomData() {
+    if (this.canUseAttribute()) {
+      this.__testOnCallable(new RandomExample(TestBase.getNullLogger()));
     }
   }
 }

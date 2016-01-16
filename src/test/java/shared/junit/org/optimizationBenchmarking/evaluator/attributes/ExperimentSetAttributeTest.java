@@ -33,7 +33,7 @@ public class ExperimentSetAttributeTest<RT> extends
   /** {@inheritDoc} */
   @Override
   protected void testOnExperimentSet(final IExperimentSet data) {
-    this.assertResult(
+    this.checkResult(
         this.getInstance().get(data, TestBase.getNullLogger()));
   }
 }

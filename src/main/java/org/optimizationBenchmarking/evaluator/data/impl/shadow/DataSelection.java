@@ -185,6 +185,8 @@ public class DataSelection
       for (final IInstanceRuns runs : experiment.getData()) {
         if (Compare.equals(instance, runs.getInstance())) {
           if (this._addSubElement(runs)) {
+            this.m_parameters
+                ._addSubElements(experiment.getParameterSetting());
             changed = true;
           }
           continue outer;

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
@@ -18,13 +16,7 @@ import org.optimizationBenchmarking.evaluator.data.spec.IDimension;
 import org.optimizationBenchmarking.evaluator.data.spec.IDimensionSet;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperiment;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
-import org.optimizationBenchmarking.evaluator.data.spec.IFeature;
-import org.optimizationBenchmarking.evaluator.data.spec.IFeatureValue;
-import org.optimizationBenchmarking.evaluator.data.spec.IInstance;
 import org.optimizationBenchmarking.evaluator.data.spec.IInstanceRuns;
-import org.optimizationBenchmarking.evaluator.data.spec.IParameter;
-import org.optimizationBenchmarking.evaluator.data.spec.IParameterValue;
-import org.optimizationBenchmarking.evaluator.data.spec.IProperty;
 import org.optimizationBenchmarking.evaluator.data.spec.IRun;
 import org.optimizationBenchmarking.evaluator.io.impl.edi.EDIInput;
 import org.optimizationBenchmarking.evaluator.io.impl.edi.EDIOutput;
@@ -70,23 +62,7 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
    */
   @Test(timeout = 3600000)
   public final void testExperimentSetData() {
-    final ArrayListView<? extends IExperiment> d;
-
-    d = this.getInstance().getData();
-    Assert.assertNotNull(d);
-    Assert.assertFalse(d.isEmpty());
-    Assert.assertTrue(d.size() > 0);
-  }
-
-  /**
-   * Test the experiment dimension data
-   */
-  @Test(timeout = 3600000)
-  public final void testExperimentSetDimensions() {
-    final IDimensionSet ds;
-
-    ds = this.getInstance().getDimensions();
-    Assert.assertNotNull(ds);
+    DataValidator.checkExperimentSet(this.getInstance());
   }
 
   /**
@@ -621,7 +597,7 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
-    ExperimentSetTest._assertEquals(inst, es1);
+    DataValidator.assertEquals(inst, es1);
 
     try {
       try (final StringWriter w = new StringWriter()) {
@@ -645,299 +621,8 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }
-    ExperimentSetTest._assertEquals(inst, es2);
-    ExperimentSetTest._assertEquals(es1, es2);
-
-  }
-
-  /**
-   * assert that two experiment sets are equal
-   *
-   * @param a
-   *          set a
-   * @param b
-   *          set b
-   */
-  static final void _assertEquals(final IExperimentSet a,
-      final IExperimentSet b) {
-    int s;
-    ArrayListView<? extends IExperiment> ae, be;
-    ArrayListView<? extends IFeature> af, bf;
-    ArrayListView<? extends IParameter> ap, bp;
-    ArrayListView<? extends IDimension> ad, bd;
-    IDimension d1, d2;
-
-    ae = a.getData();
-    be = b.getData();
-
-    Assert.assertEquals(s = ae.size(), be.size());
-    for (; (--s) >= 0;) {
-      ExperimentSetTest._assertEquals(ae.get(s), be.get(s));
-    }
-
-    af = a.getFeatures().getData();
-    bf = b.getFeatures().getData();
-    Assert.assertEquals(s = af.size(), bf.size());
-    for (; (--s) >= 0;) {
-      ExperimentSetTest._assertEquals(af.get(s), bf.get(s));
-    }
-
-    ap = a.getParameters().getData();
-    bp = b.getParameters().getData();
-    Assert.assertEquals(s = ap.size(), bp.size());
-    for (; (--s) >= 0;) {
-      ExperimentSetTest._assertEquals(ap.get(s), bp.get(s));
-    }
-
-    ad = a.getDimensions().getData();
-    bd = b.getDimensions().getData();
-    Assert.assertEquals(s = ad.size(), bd.size());
-    for (; (--s) >= 0;) {
-      d1 = ad.get(s);
-      d2 = bd.get(s);
-      Assert.assertEquals(d1.getName(), d2.getName());
-      Assert.assertEquals(d1.getDescription(), d2.getDescription());
-      Assert.assertSame(d1.getDataType(), d2.getDataType());
-      Assert.assertSame(d1.getDimensionType(), d2.getDimensionType());
-      Assert.assertSame(d1.getDirection(), d2.getDirection());
-      Assert.assertSame(d1.getParser().getOutputClass(),
-          d2.getParser().getOutputClass());
-    }
-  }
-
-  /**
-   * assert that parameter values are equal
-   *
-   * @param a
-   *          the parameter value
-   * @param b
-   *          the parameter value
-   */
-  private static final void __assertVEquals(final Object a,
-      final Object b) {
-    boolean id1, id2;
-    long l1, l2;
-    double d1, d2;
-    String s1, s2;
-
-    if ((a instanceof Number) && (b instanceof Number)) {
-
-      if ((a instanceof Float) || (a instanceof Double)) {
-        d1 = ((Number) a).doubleValue();
-        l1 = 0L;
-        id1 = true;
-      } else {
-        d1 = Double.NaN;
-        l1 = ((Number) a).longValue();
-        id1 = false;
-      }
-
-      if ((b instanceof Float) || (b instanceof Double)) {
-        d2 = ((Number) b).doubleValue();
-        l2 = 0L;
-        id2 = true;
-      } else {
-        d2 = Double.NaN;
-        l2 = ((Number) b).longValue();
-        id2 = false;
-      }
-
-      if (id1 == id2) {
-        if (id1) {
-          Assert.assertEquals(d1, d2, 1e-14);
-        } else {
-          Assert.assertEquals(l1, l2);
-        }
-        return;
-      }
-
-    } else {
-      checkString: {
-        if (a instanceof String) {
-          s1 = ((String) a);
-        } else {
-          if (a instanceof Character) {
-            s1 = a.toString();
-          } else {
-            break checkString;
-          }
-        }
-
-        if (b instanceof String) {
-          s2 = ((String) b);
-        } else {
-          if (b instanceof Character) {
-            s2 = b.toString();
-          } else {
-            break checkString;
-          }
-        }
-
-        Assert.assertEquals(s1, s2);
-        return;
-      }
-    }
-
-    Assert.assertEquals(a, b);
-  }
-
-  /**
-   * assert that two experiment sets are equal
-   *
-   * @param a
-   *          set a
-   * @param b
-   *          set b
-   */
-  static final void _assertEquals(final IExperiment a,
-      final IExperiment b) {
-    Iterator<Map.Entry<IProperty, Object>> x, y;
-    Map.Entry<IProperty, Object> xe, ye;
-    boolean z;
-    ArrayListView<? extends IInstanceRuns> ia, ib;
-    IInstanceRuns iae, ibe;
-    int si, sr, sp;
-    ArrayListView<? extends IRun> ra, rb;
-    IRun rae, rbe;
-    ArrayListView<? extends IDataPoint> da, db;
-
-    Assert.assertEquals(a.getName(), b.getName());
-    Assert.assertEquals(a.getDescription(), b.getDescription());
-
-    x = a.getParameterSetting().entrySet().iterator();
-    y = b.getParameterSetting().entrySet().iterator();
-
-    outer: for (;;) {
-      z = x.hasNext();
-      Assert.assertTrue(z == y.hasNext());
-      if (!z) {
-        break outer;
-      }
-      xe = x.next();
-      ye = y.next();
-      ExperimentSetTest.__assertVEquals(xe.getValue(), ye.getValue());
-      ExperimentSetTest._assertEquals(((IParameter) (xe.getKey())),
-          ((IParameter) (ye.getKey())));
-    }
-
-    ia = a.getData();
-    ib = b.getData();
-    si = ia.size();
-    Assert.assertEquals(si, ib.size());
-    for (; (--si) >= 0;) {
-      iae = ia.get(si);
-      ibe = ib.get(si);
-      ExperimentSetTest._assertEquals(iae.getInstance(),
-          ibe.getInstance());
-      ra = iae.getData();
-      rb = ibe.getData();
-      sr = ra.size();
-      Assert.assertEquals(sr, rb.size());
-      for (; (--sr) >= 0;) {
-        rae = ra.get(sr);
-        rbe = rb.get(sr);
-
-        da = rae.getData();
-        db = rbe.getData();
-        sp = da.size();
-        Assert.assertEquals(sp, db.size());
-        for (; (--sp) >= 0;) {
-          Assert.assertEquals(da.get(sp), db.get(sp));
-        }
-      }
-    }
-
-  }
-
-  /**
-   * assert that two experiment sets are equal
-   *
-   * @param a
-   *          set a
-   * @param b
-   *          set b
-   */
-  static final void _assertEquals(final IParameter a, final IParameter b) {
-    ArrayListView<? extends IParameterValue> x, y;
-    IParameterValue xe, ye;
-    int s;
-
-    Assert.assertEquals(a.getName(), b.getName());
-    Assert.assertEquals(a.getDescription(), b.getDescription());
-
-    x = a.getData();
-    y = b.getData();
-    s = x.size();
-    Assert.assertEquals(s, y.size());
-    for (; (--s) >= 0;) {
-      xe = x.get(s);
-      ye = y.get(s);
-      Assert.assertEquals(xe.getName(), ye.getName());
-      Assert.assertEquals(xe.getDescription(), ye.getDescription());
-      ExperimentSetTest.__assertVEquals(xe.getValue(), ye.getValue());
-    }
-  }
-
-  /**
-   * assert that two experiment sets are equal
-   *
-   * @param a
-   *          set a
-   * @param b
-   *          set b
-   */
-  static final void _assertEquals(final IFeature a, final IFeature b) {
-    ArrayListView<? extends IFeatureValue> x, y;
-    IFeatureValue xe, ye;
-    int s;
-
-    Assert.assertEquals(a.getName(), b.getName());
-    Assert.assertEquals(a.getDescription(), b.getDescription());
-
-    x = a.getData();
-    y = b.getData();
-    s = x.size();
-    Assert.assertEquals(s, y.size());
-    for (; (--s) >= 0;) {
-      xe = x.get(s);
-      ye = y.get(s);
-      Assert.assertEquals(xe.getName(), ye.getName());
-      Assert.assertEquals(xe.getDescription(), ye.getDescription());
-      ExperimentSetTest.__assertVEquals(xe.getValue(), ye.getValue());
-    }
-  }
-
-  /**
-   * assert that two experiment sets are equal
-   *
-   * @param a
-   *          set a
-   * @param b
-   *          set b
-   */
-  static final void _assertEquals(final IInstance a, final IInstance b) {
-    Iterator<Map.Entry<IProperty, Object>> x, y;
-    Map.Entry<IProperty, Object> xe, ye;
-    boolean z;
-
-    Assert.assertEquals(a.getName(), b.getName());
-    Assert.assertEquals(a.getDescription(), b.getDescription());
-
-    x = a.getFeatureSetting().entrySet().iterator();
-    y = b.getFeatureSetting().entrySet().iterator();
-
-    outer: for (;;) {
-      z = x.hasNext();
-      Assert.assertTrue(z == y.hasNext());
-      if (!z) {
-        break outer;
-      }
-      xe = x.next();
-      ye = y.next();
-      ExperimentSetTest.__assertVEquals(xe.getValue(), ye.getValue());
-      ExperimentSetTest._assertEquals(((IFeature) (xe.getKey())),
-          ((IFeature) (ye.getKey())));
-    }
+    DataValidator.assertEquals(inst, es2);
+    DataValidator.assertEquals(es1, es2);
   }
 
   /** {@inheritDoc} */
