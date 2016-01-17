@@ -33,9 +33,9 @@ public class ExperimentSetAttributeTest<RT> extends
   protected void testOnExperimentSet(final IExperimentSet data) {
     final Attribute<? super IExperimentSet, ? extends RT> attribute;
 
-    attribute = this.getAttribute(data);
+    attribute = this.getAttribute(data, data);
     Assert.assertNotNull(attribute);
-    this.checkResult(attribute, data,
+    this.checkResult(attribute, data, data,
         attribute.get(data, TestBase.getNullLogger()));
   }
 }

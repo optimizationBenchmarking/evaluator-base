@@ -46,22 +46,25 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
   /**
    * Get the instance of the attribute applicable to the given data
    *
+   * @param experimentSet
+   *          the experiment set
    * @param data
    *          the data
    * @return the attribute
    */
-  protected AT getAttribute(final ST data) {
+  protected AT getAttribute(final IExperimentSet experimentSet,
+      final ST data) {
     return this.m_attribute;
   }
 
   /**
    * Test the attribute on the given data set. This method is supposed to
    * invoke the attribute and check it's output via
-   * {@link #checkResult(Attribute,IDataElement,Object)}
+   * {@link #checkResult(Attribute,IExperimentSet,IDataElement,Object)}
    *
    * @param data
    *          the data set
-   * @see #checkResult(Attribute,IDataElement,Object)
+   * @see #checkResult(Attribute,IExperimentSet,IDataElement,Object)
    */
   protected abstract void testOnExperimentSet(final IExperimentSet data);
 
@@ -90,12 +93,15 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
    *
    * @param attribute
    *          the attribute
+   * @param experimentSet
+   *          the experiment set
    * @param input
    *          the input data
    * @param result
    *          the result
    */
-  protected void checkResult(final AT attribute, final ST input,
+  protected void checkResult(final AT attribute,
+      final IExperimentSet experimentSet, final ST input,
       final RT result) {
     Assert.assertNotNull(result);
   }
