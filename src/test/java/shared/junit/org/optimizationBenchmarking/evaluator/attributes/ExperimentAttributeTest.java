@@ -7,17 +7,16 @@ import org.junit.Ignore;
 import org.optimizationBenchmarking.evaluator.data.spec.Attribute;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperiment;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
-import org.optimizationBenchmarking.evaluator.data.spec.IInstanceRuns;
 
 /**
- * A test for attributes processing single instance runs sets.
+ * A test for attributes processing single experiments.
  *
  * @param <RT>
  *          the result type
  */
 @Ignore
-public class InstanceRunsAttributeTest<RT> extends
-    ElementAttributeTest<IInstanceRuns, RT, Attribute<? super IInstanceRuns, ? extends RT>> {
+public class ExperimentAttributeTest<RT> extends
+    ElementAttributeTest<IExperiment, RT, Attribute<? super IExperiment, ? extends RT>> {
 
   /**
    * Create the test.
@@ -25,20 +24,18 @@ public class InstanceRunsAttributeTest<RT> extends
    * @param attribute
    *          the attribute to test
    */
-  public InstanceRunsAttributeTest(
-      final Attribute<? super IInstanceRuns, ? extends RT> attribute) {
+  public ExperimentAttributeTest(
+      final Attribute<? super IExperiment, ? extends RT> attribute) {
     super(attribute);
   }
 
   /** {@inheritDoc} */
   @Override
-  protected List<IInstanceRuns> getElementSelection(
+  protected List<IExperiment> getElementSelection(
       final IExperimentSet data) {
-    final ArrayList<IInstanceRuns> all;
-    all = new ArrayList<>();
-    for (final IExperiment exp : data.getData()) {
-      all.addAll(exp.getData());
-    }
-    return all;
+    final ArrayList<IExperiment> experiments;
+    experiments = new ArrayList<>();
+    experiments.addAll(data.getData());
+    return experiments;
   }
 }
