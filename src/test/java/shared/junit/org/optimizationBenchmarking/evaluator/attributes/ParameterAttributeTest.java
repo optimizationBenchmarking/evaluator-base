@@ -13,10 +13,12 @@ import org.optimizationBenchmarking.evaluator.data.spec.IParameter;
  *
  * @param <RT>
  *          the result type
+ * @param <AT>
+ *          the attribute type
  */
 @Ignore
-public class ParameterAttributeTest<RT> extends
-    ElementAttributeTest<IParameter, RT, Attribute<? super IParameter, ? extends RT>> {
+public class ParameterAttributeTest<RT, AT extends Attribute<? super IParameter, ? extends RT>>
+    extends ElementAttributeTest<IParameter, RT, AT> {
 
   /**
    * Create the test.
@@ -24,8 +26,7 @@ public class ParameterAttributeTest<RT> extends
    * @param attribute
    *          the attribute to test
    */
-  public ParameterAttributeTest(
-      final Attribute<? super IParameter, ? extends RT> attribute) {
+  public ParameterAttributeTest(final AT attribute) {
     super(attribute);
   }
 

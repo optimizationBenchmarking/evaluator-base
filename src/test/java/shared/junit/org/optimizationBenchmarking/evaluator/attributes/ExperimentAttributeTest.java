@@ -13,10 +13,12 @@ import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
  *
  * @param <RT>
  *          the result type
+ * @param <AT>
+ *          the attribute type
  */
 @Ignore
-public class ExperimentAttributeTest<RT> extends
-    ElementAttributeTest<IExperiment, RT, Attribute<? super IExperiment, ? extends RT>> {
+public class ExperimentAttributeTest<RT, AT extends Attribute<? super IExperiment, ? extends RT>>
+    extends ElementAttributeTest<IExperiment, RT, AT> {
 
   /**
    * Create the test.
@@ -24,8 +26,7 @@ public class ExperimentAttributeTest<RT> extends
    * @param attribute
    *          the attribute to test
    */
-  public ExperimentAttributeTest(
-      final Attribute<? super IExperiment, ? extends RT> attribute) {
+  public ExperimentAttributeTest(final AT attribute) {
     super(attribute);
   }
 

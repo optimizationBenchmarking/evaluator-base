@@ -54,7 +54,10 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
    */
   protected AT getAttribute(final IExperimentSet experimentSet,
       final ST data) {
-    return this.m_attribute;
+    final AT attribute;
+    attribute = this.m_attribute;
+    Assert.assertNotNull(attribute);
+    return attribute;
   }
 
   /**

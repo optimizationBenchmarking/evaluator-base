@@ -12,10 +12,12 @@ import shared.junit.TestBase;
  *
  * @param <RT>
  *          the result type
+ * @param <AT>
+ *          the attribute type
  */
 @Ignore
-public class ExperimentSetAttributeTest<RT> extends
-    AttributeTest<IExperimentSet, RT, Attribute<? super IExperimentSet, ? extends RT>> {
+public class ExperimentSetAttributeTest<RT, AT extends Attribute<? super IExperimentSet, ? extends RT>>
+    extends AttributeTest<IExperimentSet, RT, AT> {
 
   /**
    * Create the test.
@@ -23,15 +25,14 @@ public class ExperimentSetAttributeTest<RT> extends
    * @param attribute
    *          the attribute to test
    */
-  public ExperimentSetAttributeTest(
-      final Attribute<? super IExperimentSet, ? extends RT> attribute) {
+  public ExperimentSetAttributeTest(final AT attribute) {
     super(attribute);
   }
 
   /** {@inheritDoc} */
   @Override
   protected void testOnExperimentSet(final IExperimentSet data) {
-    final Attribute<? super IExperimentSet, ? extends RT> attribute;
+    final AT attribute;
 
     attribute = this.getAttribute(data, data);
     Assert.assertNotNull(attribute);

@@ -14,10 +14,12 @@ import org.optimizationBenchmarking.evaluator.data.spec.IInstanceRuns;
  *
  * @param <RT>
  *          the result type
+ * @param <AT>
+ *          the attribute type
  */
 @Ignore
-public class InstanceRunsAttributeTest<RT> extends
-    ElementAttributeTest<IInstanceRuns, RT, Attribute<? super IInstanceRuns, ? extends RT>> {
+public class InstanceRunsAttributeTest<RT, AT extends Attribute<? super IInstanceRuns, ? extends RT>>
+    extends ElementAttributeTest<IInstanceRuns, RT, AT> {
 
   /**
    * Create the test.
@@ -25,8 +27,7 @@ public class InstanceRunsAttributeTest<RT> extends
    * @param attribute
    *          the attribute to test
    */
-  public InstanceRunsAttributeTest(
-      final Attribute<? super IInstanceRuns, ? extends RT> attribute) {
+  public InstanceRunsAttributeTest(final AT attribute) {
     super(attribute);
   }
 

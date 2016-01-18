@@ -79,7 +79,7 @@ public abstract class ElementAttributeTest<ST extends IDataElement, RT, AT exten
     max = this.getMaxAttributeComputationsPerDataset();
     Assert.assertTrue(max > 0);
 
-    if (max <= size) {
+    if (size <= max) {
       for (final ST element : all) {
         this.__invoke(data, element);
       }
