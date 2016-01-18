@@ -96,10 +96,12 @@ public class RandomExample extends ExperimentSetCreator {
    */
   void _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
+    int size;
 
+    size = 0;
     do {
       this._createDimension(dsc, r);
-    } while (r.nextBoolean());
+    } while (((++size) < 2) || (r.nextBoolean()));
   }
 
   /**
