@@ -718,10 +718,11 @@ public class RandomExample extends ExperimentSetCreator {
    *          the dimensions
    * @param irc
    *          the instance run context
+   * @return {@code true} if a run was created, {@code false} otherwise
    */
   @SuppressWarnings("unused")
-  void _createRun(final InstanceRunsContext irc, final DimensionSet dims,
-      final Random r) {
+  boolean _createRun(final InstanceRunsContext irc,
+      final DimensionSet dims, final Random r) {
     ArrayList<DataPoint> dps;
     DataPoint p, before, after;
     int j, k;
@@ -792,7 +793,9 @@ public class RandomExample extends ExperimentSetCreator {
           }
         }
       }
+      return true;
     }
+    return false;
   }
 
   /**
@@ -811,8 +814,10 @@ public class RandomExample extends ExperimentSetCreator {
 
     count = 0;
     do {
-      this._createRun(irc, dims, r);
-    } while (((++count) < 3) || (r.nextInt(5) > 0));
+      if (this._createRun(irc, dims, r)) {
+        ++count;
+      }
+    } while ((count < 3) || (r.nextInt(5) > 0));
   }
 
   /**
