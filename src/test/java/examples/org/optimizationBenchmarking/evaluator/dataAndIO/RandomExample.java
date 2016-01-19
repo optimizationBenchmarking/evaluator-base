@@ -807,9 +807,12 @@ public class RandomExample extends ExperimentSetCreator {
    */
   void _createInstanceRunsInner(final InstanceRunsContext irc,
       final DimensionSet dims, final Random r) {
+    int count;
+
+    count = 0;
     do {
       this._createRun(irc, dims, r);
-    } while (r.nextInt(5) > 0);
+    } while (((++count) < 3) || (r.nextInt(5) > 0));
   }
 
   /**
