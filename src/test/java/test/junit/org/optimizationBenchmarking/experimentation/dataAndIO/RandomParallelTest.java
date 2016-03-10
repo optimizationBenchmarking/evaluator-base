@@ -9,6 +9,6 @@ public class RandomParallelTest extends ExperimentSetTest {
 
   /** create */
   public RandomParallelTest() {
-    super(new RandomParallelExample(TestBase.getNullLogger()));
+    super(new RandomParallelExample(true, TestBase.getNullLogger()));
   }
 }

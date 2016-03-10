@@ -19,11 +19,13 @@ public final class Example2Random extends RandomExample {
   /**
    * create
    *
+   * @param fullRange
+   *          hit me with the full range of randomness, please
    * @param logger
    *          the logger, or {@code null} to use the global logger
    */
-  public Example2Random(final Logger logger) {
-    super(logger);
+  public Example2Random(final boolean fullRange, final Logger logger) {
+    super(fullRange, logger);
   }
 
   /** {@inheritDoc} */
@@ -90,6 +92,6 @@ public final class Example2Random extends RandomExample {
    */
   public static final void main(final String[] args) {
     Configuration.setup(args);
-    new Example2Random(null).run();
+    new Example2Random(true, null).run();
   }
 }

@@ -15,11 +15,14 @@ public final class RandomBBOBParallelExample
   /**
    * create
    *
+   * @param fullRange
+   *          hit me with the full range of randomness, please
    * @param logger
    *          the logger, or {@code null} to use the global logger
    */
-  public RandomBBOBParallelExample(final Logger logger) {
-    super(logger);
+  public RandomBBOBParallelExample(final boolean fullRange,
+      final Logger logger) {
+    super(true, logger);
   }
 
   /** {@inheritDoc} */
@@ -44,6 +47,6 @@ public final class RandomBBOBParallelExample
    */
   public static void main(final String[] args) {
     Configuration.setup(args);
-    new RandomBBOBParallelExample(null).run();
+    new RandomBBOBParallelExample(true, null).run();
   }
 }

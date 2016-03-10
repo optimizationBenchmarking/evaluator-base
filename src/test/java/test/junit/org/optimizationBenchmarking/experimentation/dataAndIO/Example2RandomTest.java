@@ -9,7 +9,7 @@ public class Example2RandomTest extends ExperimentSetTest {
 
   /** create */
   public Example2RandomTest() {
-    super(new Example2Random(TestBase.getNullLogger()));
+    super(new Example2Random(true, TestBase.getNullLogger()));
   }
 
 }

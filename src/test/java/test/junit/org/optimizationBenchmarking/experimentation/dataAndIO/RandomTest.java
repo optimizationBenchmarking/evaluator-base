@@ -9,6 +9,6 @@ public class RandomTest extends ExperimentSetTest {
 
   /** create */
   public RandomTest() {
-    super(new RandomExample(TestBase.getNullLogger()));
+    super(new RandomExample(true, TestBase.getNullLogger()));
   }
 }

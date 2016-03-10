@@ -15,11 +15,14 @@ public final class RandomTSPSuiteParallelExample
   /**
    * create
    *
+   * @param fullRange
+   *          hit me with the full range of randomness, please
    * @param logger
    *          the logger, or {@code null} to use the global logger
    */
-  public RandomTSPSuiteParallelExample(final Logger logger) {
-    super(logger);
+  public RandomTSPSuiteParallelExample(final boolean fullRange,
+      final Logger logger) {
+    super(fullRange, logger);
   }
 
   /** {@inheritDoc} */
@@ -44,6 +47,6 @@ public final class RandomTSPSuiteParallelExample
    */
   public static void main(final String[] args) {
     Configuration.setup(args);
-    new RandomTSPSuiteParallelExample(null).run();
+    new RandomTSPSuiteParallelExample(true, null).run();
   }
 }

@@ -12,6 +12,6 @@ public class RandomBBOBParallelTest extends ExperimentSetTest {
 
   /** create */
   public RandomBBOBParallelTest() {
-    super(new RandomBBOBParallelExample(TestBase.getNullLogger()));
+    super(new RandomBBOBParallelExample(true, TestBase.getNullLogger()));
   }
 }

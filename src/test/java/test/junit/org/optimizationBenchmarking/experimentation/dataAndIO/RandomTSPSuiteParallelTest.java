@@ -15,6 +15,7 @@ public class RandomTSPSuiteParallelTest extends ExperimentSetTest {
 
   /** create */
   public RandomTSPSuiteParallelTest() {
-    super(new RandomTSPSuiteParallelExample(TestBase.getNullLogger()));
+    super(
+        new RandomTSPSuiteParallelExample(true, TestBase.getNullLogger()));
   }
 }

@@ -26,11 +26,14 @@ public class RandomParallelExample extends RandomExample {
   /**
    * create
    *
+   * @param fullRange
+   *          hit me with the full range of randomness, please
    * @param logger
    *          the logger, or {@code null} to use the global logger
    */
-  public RandomParallelExample(final Logger logger) {
-    super(logger);
+  public RandomParallelExample(final boolean fullRange,
+      final Logger logger) {
+    super(fullRange, logger);
   }
 
   /**
@@ -85,7 +88,8 @@ public class RandomParallelExample extends RandomExample {
       tasks.add(new _CreateExperimentOuter(isc, dims, is, must, params,
           configs));
       ++z;
-    } while ((z < 100) && ((z <= 2) || (r.nextInt(15) > 0)));
+    } while ((z < 100)
+        && ((z <= (this.m_fullRange ? 1 : 2)) || (r.nextInt(15) > 0)));
 
     if (tasks.size() > 0) {
       for (final ForkJoinTask<?> t : ForkJoinTask.invokeAll(tasks)) {
@@ -147,7 +151,7 @@ public class RandomParallelExample extends RandomExample {
    */
   public static void main(final String[] args) {
     Configuration.setup(args);
-    new RandomParallelExample(null).run();
+    new RandomParallelExample(true, null).run();
   }
 
   /** an action for creating an experiment */

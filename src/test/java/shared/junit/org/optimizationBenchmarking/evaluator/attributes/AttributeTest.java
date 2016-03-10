@@ -151,7 +151,8 @@ public abstract class AttributeTest<ST extends IDataElement, RT, AT extends Attr
   @Test(timeout = 3600000)
   public void testAttributeOnRandomData() {
     if (this.canUseAttribute()) {
-      this.__testOnCallable(new RandomExample(TestBase.getNullLogger()));
+      this.__testOnCallable(
+          new RandomExample(false, TestBase.getNullLogger()));
     }
   }
 }

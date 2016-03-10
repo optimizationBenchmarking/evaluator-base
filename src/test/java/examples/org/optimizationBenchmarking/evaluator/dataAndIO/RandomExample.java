@@ -51,13 +51,22 @@ public class RandomExample extends ExperimentSetCreator {
   final AtomicLong m_v;
 
   /**
+   * be as random as possible ({@code true}) or create somewhat sane data (
+   * {@code false})
+   */
+  final boolean m_fullRange;
+
+  /**
    * create
    *
+   * @param fullRange
+   *          hit me with the full range of randomness, please
    * @param logger
    *          the logger, or {@code null} to use the global logger
    */
-  public RandomExample(final Logger logger) {
+  public RandomExample(final boolean fullRange, final Logger logger) {
     super(logger);
+    this.m_fullRange = fullRange;
     this.m_v = new AtomicLong();
   }
 
@@ -817,7 +826,7 @@ public class RandomExample extends ExperimentSetCreator {
       if (this._createRun(irc, dims, r)) {
         ++count;
       }
-    } while ((count < 3) || (r.nextInt(5) > 0));
+    } while ((count < (this.m_fullRange ? 1 : 3)) || (r.nextInt(5) > 0));
   }
 
   /**
@@ -953,7 +962,7 @@ public class RandomExample extends ExperimentSetCreator {
 
     params = this.__createProperties(r);
     is = insts.getData().toArray(new Instance[insts.getData().size()]);
-    must = is[r.nextInt(is.length)];
+    must = (this.m_fullRange ? null : is[r.nextInt(is.length)]);
     configs = new HashSet<>();
 
     this._createExperimentSetInner(isc, dims, is, must, params, configs,
@@ -988,7 +997,8 @@ public class RandomExample extends ExperimentSetCreator {
     do {
       this._createExperimentOuter(isc, dims, is, must, params, configs, r);
       ++z;
-    } while ((z < 100) && ((z <= 2) || (r.nextInt(4) > 0)));
+    } while ((z < 100)
+        && ((z <= (this.m_fullRange ? 1 : 2)) || (r.nextInt(4) > 0)));
   }
 
   /**
@@ -999,6 +1009,6 @@ public class RandomExample extends ExperimentSetCreator {
    */
   public static void main(final String[] args) {
     Configuration.setup(args);
-    new RandomExample(null).run();
+    new RandomExample(true, null).run();
   }
 }
