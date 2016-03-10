@@ -79,12 +79,13 @@ public class RandomParallelExample extends RandomExample {
     final ArrayList<ForkJoinTask<?>> tasks;
     int z;
 
-    z = 100;
     tasks = new ArrayList<>();
+    z = 0;
     do {
       tasks.add(new _CreateExperimentOuter(isc, dims, is, must, params,
           configs));
-    } while ((r.nextInt(15) > 0) && ((--z) >= 0));
+      ++z;
+    } while ((z < 100) && ((z <= 2) || (r.nextInt(15) > 0)));
 
     if (tasks.size() > 0) {
       for (final ForkJoinTask<?> t : ForkJoinTask.invokeAll(tasks)) {

@@ -984,10 +984,11 @@ public class RandomExample extends ExperimentSetCreator {
       final HashSet<HashMap<String, Object>> configs, final Random r) {
     int z;
 
-    z = 100;
+    z = 0;
     do {
       this._createExperimentOuter(isc, dims, is, must, params, configs, r);
-    } while ((r.nextInt(4) > 0) && ((--z) >= 0));
+      ++z;
+    } while ((z < 100) && ((z <= 2) || (r.nextInt(4) > 0)));
   }
 
   /**
