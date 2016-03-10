@@ -73,7 +73,7 @@ public class RandomParallelExample extends RandomExample {
   /** {@inheritDoc} */
   @Override
   final void _createExperimentSetInner(final ExperimentSetContext isc,
-      final DimensionSet dims, final Instance[] is,
+      final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
     final ArrayList<ForkJoinTask<?>> tasks;
@@ -82,8 +82,8 @@ public class RandomParallelExample extends RandomExample {
     z = 100;
     tasks = new ArrayList<>();
     do {
-      tasks
-          .add(new _CreateExperimentOuter(isc, dims, is, params, configs));
+      tasks.add(new _CreateExperimentOuter(isc, dims, is, must, params,
+          configs));
     } while ((r.nextInt(15) > 0) && ((--z) >= 0));
 
     if (tasks.size() > 0) {
@@ -96,19 +96,21 @@ public class RandomParallelExample extends RandomExample {
   /** {@inheritDoc} */
   @Override
   final void _createExperimentInner(final ExperimentContext ec,
-      final Instance[] is, final DimensionSet dims, final Random r) {
+      final Instance[] is, final Instance must, final DimensionSet dims,
+      final Random r) {
     final ArrayList<ForkJoinTask<?>> tasks;
+    Instance pick;
     int i, s;
 
     tasks = new ArrayList<>();
     s = r.nextInt(is.length);
     for (i = is.length; (--i) >= 0;) {
-      if ((i > 0) && (r.nextInt(5) <= 0)) {
+      pick = is[(i + s) % is.length];
+      if ((pick != must) && (i > 0) && (r.nextInt(3) <= 0)) {
         continue;
       }
 
-      tasks.add(
-          new _CreateInstanceRunsOuter(ec, is[(i + s) % is.length], dims));
+      tasks.add(new _CreateInstanceRunsOuter(ec, pick, dims));
     }
 
     if (tasks.size() > 0) {
@@ -190,11 +192,13 @@ public class RandomParallelExample extends RandomExample {
     private static final long serialVersionUID = 1L;
     /** the context */
     private final ExperimentSetContext m_isc;
-    /** the param */
+    /** the dimensions */
     private final DimensionSet m_dims;
-    /** the param */
+    /** the instance */
     private final Instance[] m_is;
-    /** the param */
+    /** the necessary instance */
+    private final Instance m_must;
+    /** the map of parameters */
     private final Map.Entry<String, Integer>[] m_params;
     /** the context */
     private final HashSet<HashMap<String, Object>> m_configs;
@@ -208,19 +212,22 @@ public class RandomParallelExample extends RandomExample {
      *          the dimensions
      * @param is
      *          the instances
+     * @param must
+     *          the necessary instance
      * @param params
      *          the parameters
      * @param configs
      *          the configurations
      */
     _CreateExperimentOuter(final ExperimentSetContext isc,
-        final DimensionSet dims, final Instance[] is,
+        final DimensionSet dims, final Instance[] is, final Instance must,
         final Map.Entry<String, Integer>[] params,
         final HashSet<HashMap<String, Object>> configs) {
       super();
       this.m_isc = isc;
       this.m_dims = dims;
       this.m_is = is;
+      this.m_must = must;
       this.m_params = params;
       this.m_configs = configs;
     }
@@ -229,8 +236,8 @@ public class RandomParallelExample extends RandomExample {
     @Override
     protected final void compute() {
       RandomParallelExample.this._createExperimentOuter(this.m_isc,
-          this.m_dims, this.m_is, this.m_params, this.m_configs,
-          ThreadLocalRandom.current());
+          this.m_dims, this.m_is, this.m_must, this.m_params,
+          this.m_configs, ThreadLocalRandom.current());
     }
   }
 

@@ -857,18 +857,23 @@ public class RandomExample extends ExperimentSetCreator {
    *          the experiment context
    * @param is
    *          the instances
+   * @param must
+   *          the necessary instance
    */
   void _createExperimentInner(final ExperimentContext ec,
-      final Instance[] is, final DimensionSet dims, final Random r) {
+      final Instance[] is, final Instance must, final DimensionSet dims,
+      final Random r) {
     int i, s;
+    Instance pick;
 
     s = r.nextInt(is.length);
     for (i = is.length; (--i) >= 0;) {
-      if ((i > 0) && (r.nextInt(3) <= 0)) {
+      pick = is[(i + s) % is.length];
+      if ((pick != must) && (i > 0) && (r.nextInt(3) <= 0)) {
         continue;
       }
 
-      this._createInstanceRunsOuter(ec, is[(i + s) % is.length], dims, r);
+      this._createInstanceRunsOuter(ec, pick, dims, r);
     }
   }
 
@@ -881,6 +886,8 @@ public class RandomExample extends ExperimentSetCreator {
    *          the dimensions
    * @param is
    *          the instances
+   * @param must
+   *          the necessary instance
    * @param r
    *          the randomizer
    * @param params
@@ -889,7 +896,7 @@ public class RandomExample extends ExperimentSetCreator {
    *          the configurations
    */
   void _createExperimentOuter(final ExperimentSetContext isc,
-      final DimensionSet dims, final Instance[] is,
+      final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
     HashMap<String, Object> config;
@@ -921,7 +928,7 @@ public class RandomExample extends ExperimentSetCreator {
         ec.setParameterValue(e.getKey(), e.getValue());
       }
 
-      this._createExperimentInner(ec, is, dims, r);
+      this._createExperimentInner(ec, is, must, dims, r);
     }
   }
 
@@ -941,14 +948,16 @@ public class RandomExample extends ExperimentSetCreator {
       final DimensionSet dims, final InstanceSet insts, final Random r) {
     final Map.Entry<String, Integer>[] params;
     final Instance[] is;
+    final Instance must;
     final HashSet<HashMap<String, Object>> configs;
 
     params = this.__createProperties(r);
     is = insts.getData().toArray(new Instance[insts.getData().size()]);
-
+    must = is[r.nextInt(is.length)];
     configs = new HashSet<>();
 
-    this._createExperimentSetInner(isc, dims, is, params, configs, r);
+    this._createExperimentSetInner(isc, dims, is, must, params, configs,
+        r);
   }
 
   /**
@@ -960,6 +969,8 @@ public class RandomExample extends ExperimentSetCreator {
    *          the dimensions
    * @param is
    *          the instances
+   * @param must
+   *          the necessary instance
    * @param params
    *          the parameters
    * @param configs
@@ -968,14 +979,14 @@ public class RandomExample extends ExperimentSetCreator {
    *          the randomizer
    */
   void _createExperimentSetInner(final ExperimentSetContext isc,
-      final DimensionSet dims, final Instance[] is,
+      final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
     int z;
 
     z = 100;
     do {
-      this._createExperimentOuter(isc, dims, is, params, configs, r);
+      this._createExperimentOuter(isc, dims, is, must, params, configs, r);
     } while ((r.nextInt(4) > 0) && ((--z) >= 0));
   }
 
