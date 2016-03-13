@@ -354,66 +354,67 @@ public class RandomExample extends ExperimentSetCreator {
   /**
    * create a random data point
    *
-   * @param r
+   * @param random
    *          the randomizer
-   * @param dimss
+   * @param dimensionSet
    *          the dimensions
    * @return the random data point
    */
-  DataPoint _createDataPoint(final DimensionSet dimss, final Random r) {
-    final ArraySetView<Dimension> dims;
-    String s;
-    DataPoint p1;
-    ArrayList<Number> lst;
-    NumberParser<Number> np;
-    Number n;
+  DataPoint _createDataPoint(final DimensionSet dimensionSet,
+      final Random random) {
+    final ArraySetView<Dimension> dimensionList;
+    String string;
+    DataPoint point;
+    ArrayList<Number> list;
+    NumberParser<Number> numberParser;
+    Number number;
 
-    dims = dimss.getData();
+    dimensionList = dimensionSet.getData();
 
-    s = ""; //$NON-NLS-1$
-    if (r.nextBoolean()) {
-      lst = new ArrayList<>();
+    string = ""; //$NON-NLS-1$
+    if (random.nextBoolean()) {
+      list = new ArrayList<>();
     } else {
-      lst = null;
+      list = null;
     }
 
-    for (final Dimension d : dims) {
-      if (lst == null) {
-        s += ' ';
-      }
+    for (final Dimension dimension : dimensionList) {
 
-      np = d.getParser();
-      n = NumberRandomization.forNumberParser(np).randomValue(np,
-          this.m_fullRange, r);
-      if (n == null) {
+      numberParser = dimension.getParser();
+      number = NumberRandomization.forNumberParser(numberParser)
+          .randomValue(numberParser, this.m_fullRange, random);
+      if (number == null) {
         return null;
       }
-      if (lst != null) {
-        lst.add(n);
+      if (list != null) {
+        list.add(number);
       } else {
-        s += n.toString();
+        if (string.length() > 0) {
+          string += ' ';
+        }
+        string += number.toString();
       }
     }
 
-    if (lst == null) {
-      p1 = dimss.getDataFactory().parseString(s);
+    if (list == null) {
+      point = dimensionSet.getDataFactory().parseString(string);
     } else {
-      p1 = dimss.getDataFactory()
-          .parseNumbers(lst.toArray(new Number[lst.size()]));
+      point = dimensionSet.getDataFactory()
+          .parseNumbers(list.toArray(new Number[list.size()]));
     }
 
-    if (p1 == null) {
+    if (point == null) {
       throw new IllegalStateException("Data point cannot be null."); //$NON-NLS-1$
     }
-    return p1;
+    return point;
   }
 
   /**
    * create a random data point
    *
-   * @param r
+   * @param random
    *          the randomizer
-   * @param dimss
+   * @param dimensionSet
    *          the dimensions
    * @param lower
    *          the lower bound
@@ -421,67 +422,67 @@ public class RandomExample extends ExperimentSetCreator {
    *          the upper bound
    * @return the random data point
    */
-  DataPoint _createDataPointBetween(final DimensionSet dimss,
-      final DataPoint lower, final DataPoint upper, final Random r) {
-    final ArraySetView<Dimension> dims;
-    String s;
-    DataPoint p1;
-    ArrayList<Number> lst;
+  DataPoint _createDataPointBetween(final DimensionSet dimensionSet,
+      final DataPoint lower, final DataPoint upper, final Random random) {
+    final ArraySetView<Dimension> dimensionList;
+    String string;
+    DataPoint point;
+    ArrayList<Number> list;
     EPrimitiveType type;
     int dimIndex, trials;
-    boolean isStrict;
-    Number n;
+    boolean inclusive;
+    Number number;
 
-    dims = dimss.getData();
+    dimensionList = dimensionSet.getData();
 
-    s = ""; //$NON-NLS-1$
-    if (r.nextBoolean()) {
-      lst = new ArrayList<>();
+    string = ""; //$NON-NLS-1$
+    if (random.nextBoolean()) {
+      list = new ArrayList<>();
     } else {
-      lst = null;
+      list = null;
     }
 
     for (trials = RandomExample.MAX_TRIALS; (--trials) >= 0;) {
 
-      for (final Dimension d : dims) {
-        if (lst == null) {
-          s += ' ';
-        }
+      for (final Dimension dimension : dimensionList) {
 
-        type = d.getDataType();
-        dimIndex = d.getIndex();
-        isStrict = d.getDirection().isStrict();
+        type = dimension.getDataType();
+        dimIndex = dimension.getIndex();
+        inclusive = (!(dimension.getDirection().isStrict()));
         try {
-          n = NumberRandomization.forNumericalPrimitiveType(type)
+          number = NumberRandomization.forNumericalPrimitiveType(type)
               .randomNumberBetween(//
-                  lower.get(dimIndex), (!(isStrict)), upper.get(dimIndex),
-                  (!(isStrict)), this.m_fullRange, r);
+                  lower.get(dimIndex), inclusive, upper.get(dimIndex),
+                  inclusive, this.m_fullRange, random);
         } catch (@SuppressWarnings("unused") final IllegalArgumentException exc) {
           return null;
         }
 
-        if (lst != null) {
-          lst.add(n);
+        if (list != null) {
+          list.add(number);
         } else {
-          s += n.toString();
+          if (string.length() > 0) {
+            string += ' ';
+          }
+          string += number.toString();
         }
       }
 
-      if (lst == null) {
-        p1 = dimss.getDataFactory().parseString(s);
+      if (list == null) {
+        point = dimensionSet.getDataFactory().parseString(string);
       } else {
-        p1 = dimss.getDataFactory()
-            .parseNumbers(lst.toArray(new Number[lst.size()]));
+        point = dimensionSet.getDataFactory()
+            .parseNumbers(list.toArray(new Number[list.size()]));
       }
 
-      if (p1 == null) {
+      if (point == null) {
         throw new IllegalStateException("Data point cannot be null."); //$NON-NLS-1$
       }
 
       try {
-        upper.validateAfter(p1);
-        p1.validateAfter(lower);
-        return p1;
+        upper.validateAfter(point);
+        point.validateAfter(lower);
+        return point;
       } catch (@SuppressWarnings("unused") final Throwable ignore) {
         //
       }
@@ -494,86 +495,88 @@ public class RandomExample extends ExperimentSetCreator {
   /**
    * create a random run
    *
-   * @param r
+   * @param random
    *          the randomizer
-   * @param dims
+   * @param dimensionSet
    *          the dimensions
-   * @param irc
+   * @param instanceRuns
    *          the instance run context
    * @return {@code true} if a run was created, {@code false} otherwise
    */
   @SuppressWarnings("unused")
-  boolean _createRun(final InstanceRunsContext irc,
-      final DimensionSet dims, final Random r) {
-    ArrayList<DataPoint> dps;
-    DataPoint p, before, after;
-    int j, size, index;
+  boolean _createRun(final InstanceRunsContext instanceRuns,
+      final DimensionSet dimensionSet, final Random random) {
+    ArrayList<DataPoint> dataPoints;
+    DataPoint point, before, after;
+    int trial, size, index;
 
-    dps = new ArrayList<>(30);
-    dps.add(this._createDataPoint(dims, r));
+    dataPoints = new ArrayList<>(30);
+    dataPoints.add(this._createDataPoint(dimensionSet, random));
 
-    j = 0;
+    trial = 0;
 
-    inner: for (j = RandomExample.MAX_TRIALS; (--j) >= 0;) {
-      size = dps.size();
+    mainLoop: for (trial = RandomExample.MAX_TRIALS; (--trial) >= 0;) {
+      size = dataPoints.size();
 
-      if ((size > (this.m_fullRange ? 0 : 3)) && (r.nextInt(8) <= 0)) {
-        break inner;
+      if ((size > (this.m_fullRange ? 0 : 3)) && //
+          (random.nextInt(this.m_fullRange ? 4 : 10) <= 0)) {
+        break mainLoop;
       }
 
-      if ((size > 1) && (r.nextInt(7) > 0)) {
-        index = r.nextInt(size - 1);
-        before = dps.get(index);
-        after = dps.get(++index);
-        p = this._createDataPointBetween(dims, before, after, r);
-        if (p != null) {
+      if ((size > 1) && (random.nextInt(7) > 0)) {
+        index = random.nextInt(size - 1);
+        before = dataPoints.get(index);
+        after = dataPoints.get(++index);
+        point = this._createDataPointBetween(dimensionSet, before, after,
+            random);
+        if (point != null) {
           try {
-            after.validateAfter(p);
-            p.validateAfter(before);
-            dps.add(index, p);
+            after.validateAfter(point);
+            point.validateAfter(before);
+            dataPoints.add(index, point);
           } catch (final Throwable error) {
             //
           }
-          continue inner;
+          continue mainLoop;
         }
       }
 
-      p = this._createDataPoint(dims, r);
+      point = this._createDataPoint(dimensionSet, random);
 
-      if (p == null) {
-        continue inner;
+      if (point == null) {
+        continue mainLoop;
       }
 
       before = null;
       finder: for (index = size; (--index) >= 0;) {
         after = before;
-        before = dps.get(index);
+        before = dataPoints.get(index);
 
         if (after != null) {
           try {
-            after.validateAfter(p);
+            after.validateAfter(point);
           } catch (final Throwable ignore) {
             continue finder;
           }
         }
 
         try {
-          p.validateAfter(before);
-          dps.add((index + 1), p);
+          point.validateAfter(before);
+          dataPoints.add((index + 1), point);
+          continue mainLoop;
         } catch (final Throwable t) {
           //
         }
-        continue inner;
       }
     }
 
-    if (dps.size() > (this.m_fullRange ? 0 : 3)) {
-      try (final RunContext rc = irc.createRun()) {
-        for (final DataPoint ppp : dps) {
-          if (r.nextBoolean()) {
-            rc.addDataPoint(ppp);
+    if (dataPoints.size() > (this.m_fullRange ? 0 : 3)) {
+      try (final RunContext run = instanceRuns.createRun()) {
+        for (final DataPoint dataPoint : dataPoints) {
+          if (random.nextBoolean()) {
+            run.addDataPoint(dataPoint);
           } else {
-            rc.addDataPoint(ppp.toString());
+            run.addDataPoint(dataPoint.toString());
           }
         }
       }
