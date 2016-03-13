@@ -33,6 +33,7 @@ import org.optimizationBenchmarking.utils.parsers.LooseShortParser;
 import org.optimizationBenchmarking.utils.parsers.NumberParser;
 import org.optimizationBenchmarking.utils.reflection.EPrimitiveType;
 
+import shared.randomization.NumberRandomization;
 import shared.randomization.RandomUtils;
 
 /** A class for creating experiment sets */
@@ -110,7 +111,7 @@ public class RandomExample extends ExperimentSetCreator {
     size = 0;
     do {
       this._createDimension(dsc, r);
-    } while (((++size) < 2) || (r.nextBoolean()));
+    } while (((++size) < (this.m_fullRange ? 1 : 2)) || (r.nextBoolean()));
   }
 
   /**
@@ -319,18 +320,11 @@ public class RandomExample extends ExperimentSetCreator {
    */
   DataPoint _createDataPoint(final DimensionSet dimss, final Random r) {
     final ArraySetView<Dimension> dims;
-    Class<?> clazz;
     String s;
     DataPoint p1;
     ArrayList<Number> lst;
     NumberParser<Number> np;
-    byte tb;
-    short ts;
-    int ti;
-    long tl, upperL, lowerL;
-    double td, upperD, lowerD;
-    float tf;
-    int maxTrials;
+    Number n;
 
     dims = dimss.getData();
 
@@ -341,156 +335,21 @@ public class RandomExample extends ExperimentSetCreator {
       lst = null;
     }
 
-    maxTrials = 1000;
-
     for (final Dimension d : dims) {
       if (lst == null) {
         s += ' ';
       }
-      clazz = d.getDataType().getPrimitiveType();
+
       np = d.getParser();
-      upperL = np.getUpperBoundLong();
-      lowerL = np.getLowerBoundLong();
-      upperD = np.getUpperBoundDouble();
-      lowerD = np.getLowerBoundDouble();
-
-      if (clazz == byte.class) {
-        do {
-          if ((--maxTrials) <= 0) {
-            return null;
-          }
-          tb = ((byte) (lowerL + r.nextInt(((int) (upperL - lowerL)))));
-        } while (((tb <= (Byte.MIN_VALUE + 2)))
-            || ((tb >= (Byte.MAX_VALUE - 2)) || (tb < lowerL)
-                || (tb > upperL)));
-        if (lst != null) {
-          lst.add(Byte.valueOf(tb));
-        } else {
-          s += tb;
-        }
+      n = NumberRandomization.forNumberParser(np).randomValue(np,
+          this.m_fullRange, r);
+      if (n == null) {
+        return null;
+      }
+      if (lst != null) {
+        lst.add(n);
       } else {
-        if (clazz == short.class) {
-
-          do {
-            if ((--maxTrials) <= 0) {
-              return null;
-            }
-            ts = ((short) (lowerL + r.nextInt(((int) (upperL - lowerL)))));
-          } while (((ts <= (Short.MIN_VALUE + 2)))
-              || ((ts >= (Short.MAX_VALUE - 2))
-                  || (ts < np.getLowerBoundLong())
-                  || (ts > np.getUpperBoundLong())));
-
-          if (lst != null) {
-            lst.add(Short.valueOf(ts));
-          } else {
-            s += ts;
-          }
-        } else {
-          if (clazz == int.class) {
-            do {
-              if ((--maxTrials) <= 0) {
-                return null;
-              }
-              ti = r.nextInt();
-              if (ti < lowerL) {
-                ti += ((1 + ((lowerL - ti) / (upperL - lowerL)))
-                    * (upperL - lowerL));
-              } else {
-                if (ti > upperL) {
-                  ti -= ((1 + ((ti - upperL) / (upperL - lowerL)))
-                      * (upperL - lowerL));
-                }
-              }
-            } while ((ti <= (Integer.MIN_VALUE + 2))
-                || (ti >= (Integer.MAX_VALUE - 2)) || (ti < lowerL)
-                || (ti > upperL));
-            if (lst != null) {
-              lst.add(Integer.valueOf(ti));
-            } else {
-              s += ti;
-            }
-          } else {
-            if (clazz == long.class) {
-              do {
-                if ((--maxTrials) <= 0) {
-                  return null;
-                }
-                tl = r.nextLong();
-                if (tl < lowerL) {
-                  tl += ((1 + ((lowerL - tl) / (upperL - lowerL)))
-                      * (upperL - lowerL));
-                } else {
-                  if (tl > upperL) {
-                    tl -= ((1 + ((tl - upperL) / (upperL - lowerL)))
-                        * (upperL - lowerL));
-                  }
-                }
-              } while ((tl <= (Long.MIN_VALUE + 2))
-                  || (tl >= (Long.MAX_VALUE - 2)) || (tl < lowerL)
-                  || (tl > upperL));
-              if (lst != null) {
-                lst.add(Long.valueOf(tl));
-              } else {
-                s += tl;
-              }
-            } else {
-              if (clazz == float.class) {
-                do {
-                  if ((--maxTrials) <= 0) {
-                    return null;
-                  }
-                  tf = Float.intBitsToFloat(r.nextInt());
-                  if (tf < lowerD) {
-                    tf += ((1d
-                        + Math.rint((lowerD - tf) / (upperD - lowerD)))
-                        * (upperD - lowerD));
-                  } else {
-                    if (tf > upperD) {
-                      tf -= ((1d
-                          + Math.rint((tf - upperD) / (upperD - lowerD)))
-                          * (upperD - lowerD));
-                    }
-                  }
-                } while (Float.isInfinite(tf) || Float.isNaN(tf)
-                    || (tf <= (-0.5f * Float.MAX_VALUE))
-                    || (tf >= (0.5f * Float.MAX_VALUE)) || (tf < lowerD)
-                    || (tf > upperD));
-                if (lst != null) {
-                  lst.add(Float.valueOf(tf));
-                } else {
-                  s += tf;
-                }
-              } else {
-                do {
-                  if ((--maxTrials) <= 0) {
-                    return null;
-                  }
-                  td = Double.longBitsToDouble(r.nextLong());
-                  if (td < lowerD) {
-                    td += ((1d
-                        + Math.rint((lowerD - td) / (upperD - lowerD)))
-                        * (upperD - lowerD));
-                  } else {
-                    if (td > upperD) {
-                      td -= ((1d
-                          + Math.rint((td - upperD) / (upperD - lowerD)))
-                          * (upperD - lowerD));
-                    }
-                  }
-                } while (Double.isInfinite(td) || Double.isNaN(td)
-                    || (td <= (-0.5d * Double.MAX_VALUE))
-                    || (td >= (0.5d * Double.MAX_VALUE)) || (td < lowerD)
-                    || (td > upperD));
-                if (lst != null) {
-                  lst.add(Double.valueOf(td));
-                } else {
-                  s += td;
-                }
-              }
-            }
-          }
-        }
+        s += n.toString();
       }
     }
 
@@ -523,19 +382,13 @@ public class RandomExample extends ExperimentSetCreator {
   DataPoint _createDataPointBetween(final DimensionSet dimss,
       final DataPoint lower, final DataPoint upper, final Random r) {
     final ArraySetView<Dimension> dims;
-    Class<?> clazz;
     String s;
     DataPoint p1;
     ArrayList<Number> lst;
-    NumberParser<Number> np;
     EPrimitiveType type;
-    byte tb;
-    short ts;
-    int ti, idx, maxTrials;
-    long tl, upperL, lowerL, rangeL, minL, maxL;
-    double td, upperD, lowerD, rangeD, minD, maxD;
-    boolean dir;
-    float tf;
+    int dimIndex;
+    boolean isStrict;
+    Number n;
 
     dims = dimss.getData();
 
@@ -546,162 +399,27 @@ public class RandomExample extends ExperimentSetCreator {
       lst = null;
     }
 
-    maxTrials = 10000;
-
     for (final Dimension d : dims) {
       if (lst == null) {
         s += ' ';
       }
 
       type = d.getDataType();
-      clazz = type.getPrimitiveType();
-      np = d.getParser();
-      idx = d.getIndex();
-      if (type.isInteger()) {
-        upperL = np.getUpperBoundLong();
-        lowerL = np.getLowerBoundLong();
-        minL = lower.getLong(idx);
-        maxL = upper.getLong(idx);
-        if (minL < maxL) {
-          dir = true;
-        } else {
-          dir = false;
-          tl = minL;
-          minL = maxL;
-          maxL = tl;
-        }
-        rangeL = (maxL - minL);
-        if (rangeL <= 0L) {
-          return null;
-        }
+      dimIndex = d.getIndex();
+      isStrict = d.getDirection().isStrict();
+      try {
+        n = NumberRandomization.forNumericalPrimitiveType(type)
+            .randomNumberBetween(//
+                lower.get(dimIndex), (!(isStrict)), upper.get(dimIndex),
+                (!(isStrict)), this.m_fullRange, r);
+      } catch (@SuppressWarnings("unused") final IllegalArgumentException exc) {
+        return null;
+      }
 
-        if (clazz == byte.class) {
-          do {
-            if ((--maxTrials) <= 0) {
-              return null;
-            }
-            ti = (1 + r.nextInt((int) rangeL));
-            tb = ((byte) (dir ? (minL + ti) : (maxL - ti)));
-          } while (((tb <= (Byte.MIN_VALUE + 2)))
-              || ((tb >= (Byte.MAX_VALUE - 2)) || (tb < lowerL)
-                  || (tb > upperL)));
-          if (lst != null) {
-            lst.add(Byte.valueOf(tb));
-          } else {
-            s += tb;
-          }
-        } else {
-          if (clazz == short.class) {
-            do {
-              if ((--maxTrials) <= 0) {
-                return null;
-              }
-              ti = (1 + r.nextInt((int) rangeL));
-              ts = ((short) (dir ? (minL + ti) : (maxL - ti)));
-            } while (((ts <= (Short.MIN_VALUE + 2)))
-                || ((ts >= (Short.MAX_VALUE - 2))
-                    || (ts < np.getLowerBoundLong())
-                    || (ts > np.getUpperBoundLong())));
-
-            if (lst != null) {
-              lst.add(Short.valueOf(ts));
-            } else {
-              s += ts;
-            }
-          } else {
-            if (clazz == int.class) {
-              do {
-                if ((--maxTrials) <= 0) {
-                  return null;
-                }
-                ti = ((rangeL < Integer.MAX_VALUE)
-                    ? (1 + r.nextInt((int) rangeL))
-                    : Math.abs(r.nextInt()));
-                ti = ((int) (dir ? (minL + ti) : (maxL - ti)));
-              } while ((ti <= (Integer.MIN_VALUE + 2))
-                  || (ti >= (Integer.MAX_VALUE - 2)) || (ti < lowerL)
-                  || (ti > upperL));
-              if (lst != null) {
-                lst.add(Integer.valueOf(ti));
-              } else {
-                s += ti;
-              }
-            } else {
-              if (clazz == long.class) {
-                do {
-                  if ((--maxTrials) <= 0) {
-                    return null;
-                  }
-                  tl = r.nextLong();
-                  if (rangeL < Long.MAX_VALUE) {
-                    tl = (Math.abs(tl % rangeL) + 1);
-                  }
-                  tl = (dir ? (minL + tl) : (maxL - tl));
-                } while ((tl <= (Long.MIN_VALUE + 2))
-                    || (tl >= (Long.MAX_VALUE - 2)) || (tl < lowerL)
-                    || (tl > upperL));
-                if (lst != null) {
-                  lst.add(Long.valueOf(tl));
-                } else {
-                  s += tl;
-                }
-              }
-            }
-          }
-        }
-
+      if (lst != null) {
+        lst.add(n);
       } else {
-        upperD = np.getUpperBoundDouble();
-        lowerD = np.getLowerBoundDouble();
-
-        minD = lower.getDouble(idx);
-        maxD = upper.getDouble(idx);
-        if (minD < maxD) {
-          dir = true;
-        } else {
-          dir = false;
-          td = minD;
-          minD = maxD;
-          maxD = td;
-        }
-        rangeD = (maxD - minD);
-        if ((rangeD <= 0d) || (rangeD >= Double.MAX_VALUE)) {
-          return null;
-        }
-
-        if (clazz == float.class) {
-          do {
-            if ((--maxTrials) <= 0) {
-              return null;
-            }
-            tf = ((float) ((dir ? (minD + (r.nextDouble() * rangeD))
-                : (maxD - (r.nextDouble() * rangeD)))));
-          } while (Float.isInfinite(tf) || Float.isNaN(tf)
-              || (tf <= (-0.5f * Float.MAX_VALUE))
-              || (tf >= (0.5f * Float.MAX_VALUE)) || (tf < lowerD)
-              || (tf > upperD));
-          if (lst != null) {
-            lst.add(Float.valueOf(tf));
-          } else {
-            s += tf;
-          }
-        } else {
-          do {
-            if ((--maxTrials) <= 0) {
-              return null;
-            }
-            td = ((dir ? (minD + (r.nextDouble() * rangeD))
-                : (maxD - (r.nextDouble() * rangeD))));
-          } while (Double.isInfinite(td) || Double.isNaN(td)
-              || (td <= (-0.5d * Double.MAX_VALUE))
-              || (td >= (0.5d * Double.MAX_VALUE)) || (td < lowerD)
-              || (td > upperD));
-          if (lst != null) {
-            lst.add(Double.valueOf(td));
-          } else {
-            s += td;
-          }
-        }
+        s += n.toString();
       }
     }
 
@@ -741,18 +459,27 @@ public class RandomExample extends ExperimentSetCreator {
 
     j = 0;
 
-    inner: for (j = 1000; (--j) >= 0;) {
+    inner: for (j = 600; (--j) >= 0;) {
       k = dps.size();
-      if ((k > 1) && (r.nextBoolean())) {
+      if ((k > 1) && (r.nextInt(7) > 0)) {
         k = r.nextInt(k - 1);
+        before = dps.get(k);
+        after = dps.get(k + 1);
         p = this._createDataPointBetween(dims, dps.get(k), dps.get(k + 1),
             r);
-      } else {
-        p = null;
+        if (p != null) {
+          try {
+            after.validateAfter(p);
+            p.validateAfter(before);
+            dps.add(k + 1, p);
+          } catch (final Throwable error) {
+            //
+          }
+          continue inner;
+        }
       }
-      if (p == null) {
-        p = this._createDataPoint(dims, r);
-      }
+
+      p = this._createDataPoint(dims, r);
 
       if (p == null) {
         continue;

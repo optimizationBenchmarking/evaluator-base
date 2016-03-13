@@ -3,7 +3,10 @@ package examples.org.optimizationBenchmarking.evaluator.dataAndIO;
 import java.util.concurrent.Callable;
 import java.util.logging.Logger;
 
+import org.optimizationBenchmarking.evaluator.data.spec.IExperiment;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
+import org.optimizationBenchmarking.evaluator.data.spec.IInstanceRuns;
+import org.optimizationBenchmarking.evaluator.data.spec.IRun;
 import org.optimizationBenchmarking.utils.MemoryUtils;
 import org.optimizationBenchmarking.utils.config.Configuration;
 
@@ -85,6 +88,17 @@ public abstract class ExperimentSetCreator
 
       System.out.print("Experiments: "); //$NON-NLS-1$
       System.out.println(es.getData());
+
+      for (final IExperiment experiment : es.getData()) {
+        System.out.println("Experiment: " + experiment.getName()); //$NON-NLS-1$
+        for (final IInstanceRuns irs : experiment.getData()) {
+          System.out.println("  Runs for: " + irs.getInstance().getName()); //$NON-NLS-1$
+          for (final IRun run : irs.getData()) {
+            System.out.println("     Run: " + run.getData().size()//$NON-NLS-1$
+                + " points"); //$NON-NLS-1$
+          }
+        }
+      }
     } catch (final Throwable error) {
       error.printStackTrace();
     }
