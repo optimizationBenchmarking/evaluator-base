@@ -161,28 +161,67 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
    *
    * @param d
    *          the double
-   * @return more
+   * @return more, or {@code null} if increasing is not possible
    */
-  private static final double __more(final double d) {
-    double a, b;
+  private static final Number __more(final Number d) {
+    final double doubleA, doubleB;
+    final float floatA, floatB;
+    final long longA, longB;
+    final int intA, intB;
+    final short shortA, shortB;
+    final byte byteA, byteB;
 
-    a = Math.nextAfter((d + 1d), Double.POSITIVE_INFINITY);
-    if (a >= Double.POSITIVE_INFINITY) {
-      return a;
-    }
-    b = Math.nextAfter((((float) a) + 1f), Double.POSITIVE_INFINITY);
-    if (b > a) {
-      a = b;
-    }
-
-    if ((a >= Long.MIN_VALUE) && (a < Long.MAX_VALUE)) {
-      b = (((long) a) + 1L);
-    }
-    if (b > a) {
-      a = b;
+    if (d instanceof Long) {
+      longA = d.longValue();
+      longB = (longA + 1L);
+      if (longB < longA) {
+        return Long.valueOf(longB);
+      }
+      return null;
     }
 
-    return a;
+    if (d instanceof Integer) {
+      intA = d.intValue();
+      intB = (intA + 1);
+      if (intB < intA) {
+        return Integer.valueOf(intB);
+      }
+      return null;
+    }
+
+    if (d instanceof Short) {
+      shortA = d.shortValue();
+      shortB = (short) (shortA + 1);
+      if (shortB < shortA) {
+        return Short.valueOf(shortB);
+      }
+      return null;
+    }
+
+    if (d instanceof Byte) {
+      byteA = d.byteValue();
+      byteB = (byte) (byteA + 1);
+      if (byteB < byteA) {
+        return Byte.valueOf(byteB);
+      }
+      return null;
+    }
+
+    if (d instanceof Float) {
+      floatA = d.floatValue();
+      floatB = Math.nextUp(Math.nextUp(Math.nextUp(floatA + 1f)));
+      if ((floatB > Float.NEGATIVE_INFINITY) && (floatB < floatA)) {
+        return Float.valueOf(floatB);
+      }
+      return null;
+    }
+
+    doubleA = d.doubleValue();
+    doubleB = Math.nextUp(Math.nextUp(Math.nextUp(doubleA + 1d)));
+    if ((doubleB > Double.NEGATIVE_INFINITY) && (doubleB < doubleA)) {
+      return Double.valueOf(doubleB);
+    }
+    return null;
   }
 
   /**
@@ -190,27 +229,71 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
    *
    * @param d
    *          the double
-   * @return less
+   * @return less, or {@code null} if decreasing is not possible
    */
-  private static final double __less(final double d) {
-    double a, b;
+  private static final Number __less(final Number d) {
+    final double doubleA, doubleB;
+    final float floatA, floatB;
+    final long longA, longB;
+    final int intA, intB;
+    final short shortA, shortB;
+    final byte byteA, byteB;
 
-    a = Math.nextAfter((d - 1d), Double.NEGATIVE_INFINITY);
-    if (a <= Double.NEGATIVE_INFINITY) {
-      return a;
-    }
-    b = Math.nextAfter((((float) a) - 1f), Double.NEGATIVE_INFINITY);
-    if (b < a) {
-      a = b;
-    }
-    if ((a > Long.MIN_VALUE) && (a <= Long.MAX_VALUE)) {
-      b = (((long) a) - 1L);
-    }
-    if (b < a) {
-      a = b;
+    if (d instanceof Long) {
+      longA = d.longValue();
+      longB = (longA - 1L);
+      if (longB < longA) {
+        return Long.valueOf(longB);
+      }
+      return null;
     }
 
-    return a;
+    if (d instanceof Integer) {
+      intA = d.intValue();
+      intB = (intA - 1);
+      if (intB < intA) {
+        return Integer.valueOf(intB);
+      }
+      return null;
+    }
+
+    if (d instanceof Short) {
+      shortA = d.shortValue();
+      shortB = (short) (shortA - 1);
+      if (shortB < shortA) {
+        return Short.valueOf(shortB);
+      }
+      return null;
+    }
+
+    if (d instanceof Byte) {
+      byteA = d.byteValue();
+      byteB = (byte) (byteA - 1);
+      if (byteB < byteA) {
+        return Byte.valueOf(byteB);
+      }
+      return null;
+    }
+
+    if (d instanceof Float) {
+      floatA = d.floatValue();
+      floatB = Math.nextAfter(Math.nextAfter(
+          Math.nextAfter(floatA - 1f, Double.NEGATIVE_INFINITY),
+          Double.NEGATIVE_INFINITY), Double.NEGATIVE_INFINITY);
+      if ((floatB > Float.NEGATIVE_INFINITY) && (floatB < floatA)) {
+        return Float.valueOf(floatB);
+      }
+      return null;
+    }
+
+    doubleA = d.doubleValue();
+    doubleB = Math.nextAfter(Math.nextAfter(
+        Math.nextAfter(doubleA - 1d, Double.NEGATIVE_INFINITY),
+        Double.NEGATIVE_INFINITY), Double.NEGATIVE_INFINITY);
+    if ((doubleB > Double.NEGATIVE_INFINITY) && (doubleB < doubleA)) {
+      return Double.valueOf(doubleB);
+    }
+    return null;
   }
 
   /**
@@ -317,7 +400,7 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
     IExperimentSet es;
     IDimensionSet dims;
     IDataPoint first, last;
-    double o, p;
+    Number o, p;
     ArrayListView<? extends IDataPoint> dps;
     int index;
 
@@ -338,19 +421,49 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
             index = dim.getIndex();
 
             if (dim.getDirection().isIncreasing()) {
-              o = ExperimentSetTest.__less(first.getDouble(index));
-              p = ExperimentSetTest.__more(last.getDouble(index));
+              o = ExperimentSetTest.__less(first.get(index));
+              p = ExperimentSetTest.__more(last.get(index));
             } else {
-              o = ExperimentSetTest.__more(first.getDouble(index));
-              p = ExperimentSetTest.__less(last.getDouble(index));
+              o = ExperimentSetTest.__more(first.get(index));
+              p = ExperimentSetTest.__less(last.get(index));
             }
 
-            if (dim.getDimensionType().isSolutionQualityMeasure()) {
-              Assert.assertNull(run.find(index, p));
-              Assert.assertEquals(first, run.find(index, o));
+            if (dim.getDataType().isInteger()) {
+              if (dim.getDimensionType().isSolutionQualityMeasure()) {
+                if (p != null) {
+                  Assert.assertNull(run.find(index, p.longValue()));
+                }
+                if (o != null) {
+                  Assert.assertEquals(first,
+                      run.find(index, o.longValue()));
+                }
+              } else {
+                if (p != null) {
+                  Assert.assertEquals(last,
+                      run.find(index, p.longValue()));
+                }
+                if (o != null) {
+                  Assert.assertNull(run.find(index, o.longValue()));
+                }
+              }
             } else {
-              Assert.assertEquals(last, run.find(index, p));
-              Assert.assertNull(run.find(index, o));
+              if (dim.getDimensionType().isSolutionQualityMeasure()) {
+                if (p != null) {
+                  Assert.assertNull(run.find(index, p.doubleValue()));
+                }
+                if (o != null) {
+                  Assert.assertEquals(first,
+                      run.find(index, o.doubleValue()));
+                }
+              } else {
+                if (p != null) {
+                  Assert.assertEquals(last,
+                      run.find(index, p.doubleValue()));
+                }
+                if (o != null) {
+                  Assert.assertNull(run.find(index, o.doubleValue()));
+                }
+              }
             }
           }
         }
