@@ -261,7 +261,7 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
     IExperimentSet es;
     IDimensionSet dims;
     IDataPoint first, last;
-    Number o, p;
+    Number beforeFirst, afterLast;
     ArrayListView<? extends IDataPoint> dps;
     int index;
 
@@ -282,47 +282,51 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
             index = dim.getIndex();
 
             if (dim.getDirection().isIncreasing()) {
-              o = TestBase.smaller(first.get(index), true);
-              p = TestBase.bigger(last.get(index), true);
+              beforeFirst = TestBase.smaller(first.get(index), true);
+              afterLast = TestBase.bigger(last.get(index), true);
             } else {
-              o = TestBase.smaller(first.get(index), true);
-              p = TestBase.bigger(last.get(index), true);
+              beforeFirst = TestBase.bigger(first.get(index), true);
+              afterLast = TestBase.smaller(last.get(index), true);
             }
 
             if (dim.getDataType().isInteger()) {
               if (dim.getDimensionType().isSolutionQualityMeasure()) {
-                if (p != null) {
-                  Assert.assertNull(run.find(index, p.longValue()));
+                if (afterLast != null) {
+                  Assert
+                      .assertNull(run.find(index, afterLast.longValue()));
                 }
-                if (o != null) {
+                if (beforeFirst != null) {
                   Assert.assertEquals(first,
-                      run.find(index, o.longValue()));
+                      run.find(index, beforeFirst.longValue()));
                 }
               } else {
-                if (p != null) {
+                if (afterLast != null) {
                   Assert.assertEquals(last,
-                      run.find(index, p.longValue()));
+                      run.find(index, afterLast.longValue()));
                 }
-                if (o != null) {
-                  Assert.assertNull(run.find(index, o.longValue()));
+                if (beforeFirst != null) {
+                  Assert.assertNull(
+                      run.find(index, beforeFirst.longValue()));
                 }
               }
             } else {
               if (dim.getDimensionType().isSolutionQualityMeasure()) {
-                if (p != null) {
-                  Assert.assertNull(run.find(index, p.doubleValue()));
+                if (afterLast != null) {
+                  Assert.assertNull(
+                      run.find(index, afterLast.doubleValue()));
                 }
-                if (o != null) {
+                if (beforeFirst != null) {
                   Assert.assertEquals(first,
-                      run.find(index, o.doubleValue()));
+                      run.find(index, beforeFirst.doubleValue()));
                 }
               } else {
-                if (p != null) {
+                if (afterLast != null) {
                   Assert.assertEquals(last,
-                      run.find(index, p.doubleValue()));
+                      run.find(index, afterLast.doubleValue()));
                 }
-                if (o != null) {
-                  Assert.assertNull(run.find(index, o.doubleValue()));
+                if (beforeFirst != null) {
+                  Assert.assertNull(
+                      run.find(index, beforeFirst.doubleValue()));
                 }
               }
             }
