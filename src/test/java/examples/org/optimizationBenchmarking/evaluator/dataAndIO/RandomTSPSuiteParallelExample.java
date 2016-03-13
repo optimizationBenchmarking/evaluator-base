@@ -27,16 +27,18 @@ public final class RandomTSPSuiteParallelExample
 
   /** {@inheritDoc} */
   @Override
-  final void _createDimensionSet(final ExperimentSetContext dsc,
+  final boolean _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
     TSPSuiteInput.makeTSPSuiteDimensionSet(dsc);
+    return true;
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createInstanceSet(final ExperimentSetContext isc,
+  final boolean _createInstanceSet(final ExperimentSetContext isc,
       final DimensionSet dims, final Random r) {
     TSPSuiteInput.makeTSPLibInstanceSet(isc);
+    return true;
   }
 
   /**

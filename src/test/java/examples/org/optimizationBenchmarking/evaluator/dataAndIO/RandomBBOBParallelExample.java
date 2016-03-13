@@ -27,16 +27,18 @@ public final class RandomBBOBParallelExample
 
   /** {@inheritDoc} */
   @Override
-  final void _createDimensionSet(final ExperimentSetContext dsc,
+  final boolean _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
     BBOBInput.makeBBOBDimensionSet(dsc);
+    return true;
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createInstanceSet(final ExperimentSetContext isc,
+  final boolean _createInstanceSet(final ExperimentSetContext isc,
       final DimensionSet dims, final Random r) {
     BBOBInput.makeBBOBInstanceSet(isc);
+    return true;
   }
 
   /**

@@ -30,7 +30,7 @@ public final class Example2Random extends RandomExample {
 
   /** {@inheritDoc} */
   @Override
-  final void _createDimensionSet(final ExperimentSetContext dsc,
+  final boolean _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
 
     do {
@@ -82,6 +82,8 @@ public final class Example2Random extends RandomExample {
         dc.setDirection(EDimensionDirection.INCREASING);
       }
     } while (r.nextBoolean());
+
+    return true;
   }
 
   /**

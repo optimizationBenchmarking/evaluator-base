@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.optimizationBenchmarking.evaluator.data.impl.ref.DataPoint;
@@ -42,6 +43,9 @@ public class RandomExample extends ExperimentSetCreator {
   /** naming */
   static final String NAMING = "abcdefghijklmnopqrstuvwxyz"; //$NON-NLS-1$
 
+  /** the maximum trials */
+  static final int MAX_TRIALS = 100;
+
   /** the parsers */
   private static final NumberParser<?>[] PARSERS = new NumberParser[] {
       LooseByteParser.INSTANCE, LooseShortParser.INSTANCE,
@@ -74,26 +78,38 @@ public class RandomExample extends ExperimentSetCreator {
   /** {@inheritDoc} */
   @Override
   protected ExperimentSet buildExperimentSet() {
-    final ExperimentSet es;
     final Random r;
+    final Logger logger;
+    int trials;
 
     r = new Random();
     this.m_v.set(r.nextLong());
+    logger = this.getLogger();
 
-    try (final ExperimentSetContext esb = new ExperimentSetContext(
-        this.getLogger())) {
+    outer: for (trials = RandomExample.MAX_TRIALS; (--trials) >= 0;) {
+      try (final ExperimentSetContext esb = new ExperimentSetContext(
+          logger)) {
 
-      this._createDimensionSet(esb, r);
+        if (!(this._createDimensionSet(esb, r))) {
+          continue outer;
+        }
 
-      this._createInstanceSet(esb, esb.getDimensionSet(), r);
+        if (!(this._createInstanceSet(esb, esb.getDimensionSet(), r))) {
+          continue outer;
+        }
 
-      this._createExperimentSet(esb, esb.getDimensionSet(),
-          esb.getInstanceSet(), r);
+        if (!(this._createExperimentSet(esb, esb.getDimensionSet(),
+            esb.getInstanceSet(), r))) {
+          continue outer;
+        }
 
-      es = esb.create();
+        return esb.create();
+      } catch (final Throwable error) {
+        this._error(error);
+      }
     }
 
-    return es;
+    return new Example1(logger).buildExperimentSet();
   }
 
   /**
@@ -103,15 +119,23 @@ public class RandomExample extends ExperimentSetCreator {
    *          the context
    * @param r
    *          the randomizer
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createDimensionSet(final ExperimentSetContext dsc,
+  boolean _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
-    int size;
+    int size, trials;
 
     size = 0;
+    trials = RandomExample.MAX_TRIALS;
     do {
-      this._createDimension(dsc, r);
-    } while (((++size) < (this.m_fullRange ? 1 : 2)) || (r.nextBoolean()));
+      if (!(this._createDimension(dsc, r))) {
+        return false;
+      }
+      ++size;
+    } while (((--trials) >= 0)
+        && ((size < (this.m_fullRange ? 1 : 2)) || (r.nextBoolean())));
+
+    return (size >= (this.m_fullRange ? 1 : 2));
   }
 
   /**
@@ -121,8 +145,10 @@ public class RandomExample extends ExperimentSetCreator {
    *          the context
    * @param r
    *          the randomizer
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createDimension(final ExperimentSetContext dsc, final Random r) {
+  boolean _createDimension(final ExperimentSetContext dsc,
+      final Random r) {
 
     try (DimensionContext dc = dsc.createDimension()) {
 
@@ -140,6 +166,7 @@ public class RandomExample extends ExperimentSetCreator {
           .get(r.nextInt(EDimensionDirection.INSTANCES.size())));
 
     }
+    return true;
   }
 
   /**
@@ -268,8 +295,9 @@ public class RandomExample extends ExperimentSetCreator {
    *          the context
    * @param features
    *          the features
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createInstance(final ExperimentSetContext isc,
+  boolean _createInstance(final ExperimentSetContext isc,
       final DimensionSet dims, final Map.Entry<String, Integer>[] features,
       final Random r) {
 
@@ -286,6 +314,8 @@ public class RandomExample extends ExperimentSetCreator {
         ic.setFeatureValue(e.getKey(), e.getValue());
       }
     }
+
+    return true;
   }
 
   /**
@@ -297,16 +327,28 @@ public class RandomExample extends ExperimentSetCreator {
    *          the dimensions
    * @param isc
    *          the context
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createInstanceSet(final ExperimentSetContext isc,
+  boolean _createInstanceSet(final ExperimentSetContext isc,
       final DimensionSet dims, final Random r) {
     final Map.Entry<String, Integer>[] features;
+    int size, trials;
 
     features = this.__createProperties(r);
+    if ((features == null) || (features.length <= 0)) {
+      return false;
+    }
 
+    trials = RandomExample.MAX_TRIALS;
+    size = 0;
     do {
-      this._createInstance(isc, dims, features, r);
-    } while (r.nextBoolean());
+      if (!(this._createInstance(isc, dims, features, r))) {
+        return false;
+      }
+      ++size;
+    } while (((--trials) >= 0)
+        && ((size <= (this.m_fullRange ? 0 : 2)) || r.nextBoolean()));
+    return (size > (this.m_fullRange ? 0 : 2));
   }
 
   /**
@@ -459,7 +501,7 @@ public class RandomExample extends ExperimentSetCreator {
 
     j = 0;
 
-    inner: for (j = 600; (--j) >= 0;) {
+    inner: for (j = RandomExample.MAX_TRIALS; (--j) >= 0;) {
       k = dps.size();
       if ((k > 1) && (r.nextInt(7) > 0)) {
         k = r.nextInt(k - 1);
@@ -519,7 +561,7 @@ public class RandomExample extends ExperimentSetCreator {
       }
     }
 
-    if (dps.size() > 0) {
+    if (dps.size() > (this.m_fullRange ? 0 : 3)) {
       try (final RunContext rc = irc.createRun()) {
         for (final DataPoint ppp : dps) {
           if (r.nextBoolean()) {
@@ -543,17 +585,21 @@ public class RandomExample extends ExperimentSetCreator {
    *          the dimensions
    * @param irc
    *          the run context
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createInstanceRunsInner(final InstanceRunsContext irc,
+  boolean _createInstanceRunsInner(final InstanceRunsContext irc,
       final DimensionSet dims, final Random r) {
-    int count;
+    int count, trials;
 
     count = 0;
+    trials = RandomExample.MAX_TRIALS;
     do {
       if (this._createRun(irc, dims, r)) {
         ++count;
       }
-    } while ((count < (this.m_fullRange ? 1 : 3)) || (r.nextInt(5) > 0));
+    } while (((--trials) >= 0) && (count < (this.m_fullRange ? 100 : 30))
+        && ((count < (this.m_fullRange ? 1 : 3)) || (r.nextInt(5) > 0)));
+    return (count >= (this.m_fullRange ? 1 : 3));
   }
 
   /**
@@ -567,8 +613,9 @@ public class RandomExample extends ExperimentSetCreator {
    *          the experiment context
    * @param inst
    *          the instance
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createInstanceRunsOuter(final ExperimentContext ec,
+  boolean _createInstanceRunsOuter(final ExperimentContext ec,
       final Instance inst, final DimensionSet dims, final Random r) {
     try (final InstanceRunsContext irc = ec.createInstanceRuns()) {
 
@@ -578,7 +625,7 @@ public class RandomExample extends ExperimentSetCreator {
         irc.setInstance(inst.getName());
       }
 
-      this._createInstanceRunsInner(irc, dims, r);
+      return this._createInstanceRunsInner(irc, dims, r);
     }
   }
 
@@ -595,8 +642,9 @@ public class RandomExample extends ExperimentSetCreator {
    *          the instances
    * @param must
    *          the necessary instance
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createExperimentInner(final ExperimentContext ec,
+  boolean _createExperimentInner(final ExperimentContext ec,
       final Instance[] is, final Instance must, final DimensionSet dims,
       final Random r) {
     int i, s;
@@ -609,8 +657,11 @@ public class RandomExample extends ExperimentSetCreator {
         continue;
       }
 
-      this._createInstanceRunsOuter(ec, pick, dims, r);
+      if (!(this._createInstanceRunsOuter(ec, pick, dims, r))) {
+        return false;
+      }
     }
+    return true;
   }
 
   /**
@@ -630,15 +681,16 @@ public class RandomExample extends ExperimentSetCreator {
    *          the parameters
    * @param configs
    *          the configurations
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createExperimentOuter(final ExperimentSetContext isc,
+  boolean _createExperimentOuter(final ExperimentSetContext isc,
       final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
     HashMap<String, Object> config;
-    int z;
+    int trials;
 
-    z = 100;
+    trials = 100;
 
     find: for (;;) {
       config = this.__createValues(params, true, r);
@@ -647,11 +699,10 @@ public class RandomExample extends ExperimentSetCreator {
           break find;
         }
       }
-      if ((--z) <= 0) {
-        return;
+      if ((--trials) <= 0) {
+        return false;
       }
     }
-
     try (final ExperimentContext ec = isc.createExperiment()) {
       ec.setName(RandomUtils.longToString(RandomExample.NAMING,
           this.m_v.incrementAndGet()));
@@ -664,7 +715,7 @@ public class RandomExample extends ExperimentSetCreator {
         ec.setParameterValue(e.getKey(), e.getValue());
       }
 
-      this._createExperimentInner(ec, is, must, dims, r);
+      return this._createExperimentInner(ec, is, must, dims, r);
     }
   }
 
@@ -679,8 +730,9 @@ public class RandomExample extends ExperimentSetCreator {
    *          the instances
    * @param r
    *          the randomizer
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createExperimentSet(final ExperimentSetContext isc,
+  boolean _createExperimentSet(final ExperimentSetContext isc,
       final DimensionSet dims, final InstanceSet insts, final Random r) {
     final Map.Entry<String, Integer>[] params;
     final Instance[] is;
@@ -692,8 +744,8 @@ public class RandomExample extends ExperimentSetCreator {
     must = (this.m_fullRange ? null : is[r.nextInt(is.length)]);
     configs = new HashSet<>();
 
-    this._createExperimentSetInner(isc, dims, is, must, params, configs,
-        r);
+    return this._createExperimentSetInner(isc, dims, is, must, params,
+        configs, r);
   }
 
   /**
@@ -713,19 +765,41 @@ public class RandomExample extends ExperimentSetCreator {
    *          the configurations
    * @param r
    *          the randomizer
+   * @return {@code true} on success, {@code false} on failure
    */
-  void _createExperimentSetInner(final ExperimentSetContext isc,
+  boolean _createExperimentSetInner(final ExperimentSetContext isc,
       final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
-    int z;
+    int trials, size;
 
-    z = 0;
+    size = 0;
+    trials = RandomExample.MAX_TRIALS;
     do {
-      this._createExperimentOuter(isc, dims, is, must, params, configs, r);
-      ++z;
-    } while ((z < 100)
-        && ((z <= (this.m_fullRange ? 1 : 2)) || (r.nextInt(4) > 0)));
+      if (!(this._createExperimentOuter(isc, dims, is, must, params,
+          configs, r))) {
+        return false;
+      }
+      ++size;
+    } while (((--trials) >= 0)
+        && ((size <= (this.m_fullRange ? 1 : 2)) || (r.nextInt(4) > 0)));
+    return (size >= (this.m_fullRange ? 1 : 2));
+  }
+
+  /**
+   * handle an error.
+   *
+   * @param error
+   *          the error
+   */
+  final void _error(final Throwable error) {
+    final Logger logger;
+    logger = this.getLogger();
+    if ((logger != null) && (logger.isLoggable(Level.FINE))) {
+      logger.log(Level.FINE,
+          "Error when creating random experiment. Will probably make another attempt.", //$NON-NLS-1$
+          error);
+    }
   }
 
   /**
@@ -736,6 +810,6 @@ public class RandomExample extends ExperimentSetCreator {
    */
   public static void main(final String[] args) {
     Configuration.setup(args);
-    new RandomExample(true, null).run();
+    new RandomExample(false, null).run();
   }
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -47,39 +47,42 @@ public class RandomParallelExample extends RandomExample {
    *          the instances
    * @param r
    *          the randomizer
+   * @return {@code true} on success, {@code false} on failure
    */
-  final void _superCreateExperimentSet(final ExperimentSetContext isc,
+  final boolean _superCreateExperimentSet(final ExperimentSetContext isc,
       final DimensionSet dims, final InstanceSet insts, final Random r) {
-    super._createExperimentSet(isc, dims, insts, r);
+    return super._createExperimentSet(isc, dims, insts, r);
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createExperimentSet(final ExperimentSetContext isc,
+  final boolean _createExperimentSet(final ExperimentSetContext isc,
       final DimensionSet dims, final InstanceSet insts, final Random r) {
+    final _CreateExperiments task;
     ForkJoinPool fjp;
 
     fjp = new ForkJoinPool(2 + r.nextInt(30));
 
-    fjp.submit(new _CreateExperiments(isc, dims, insts));
+    task = new _CreateExperiments(isc, dims, insts);
+    fjp.submit(task);
 
     fjp.shutdown();
     try {
       fjp.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
-    } catch (final Throwable t) {
-      throw new RuntimeException(//
-          "Failed to join the fork-join pool.", //$NON-NLS-1$
-          t);
+      return task.get().booleanValue();
+    } catch (final Throwable error) {
+      this._error(error);
     }
+    return false;
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createExperimentSetInner(final ExperimentSetContext isc,
+  final boolean _createExperimentSetInner(final ExperimentSetContext isc,
       final DimensionSet dims, final Instance[] is, final Instance must,
       final Map.Entry<String, Integer>[] params,
       final HashSet<HashMap<String, Object>> configs, final Random r) {
-    final ArrayList<ForkJoinTask<?>> tasks;
+    final ArrayList<ForkJoinTask<Boolean>> tasks;
     int z;
 
     tasks = new ArrayList<>();
@@ -88,22 +91,31 @@ public class RandomParallelExample extends RandomExample {
       tasks.add(new _CreateExperimentOuter(isc, dims, is, must, params,
           configs));
       ++z;
-    } while ((z < 100)
+    } while ((z < RandomExample.MAX_TRIALS)
         && ((z <= (this.m_fullRange ? 1 : 2)) || (r.nextInt(15) > 0)));
 
     if (tasks.size() > 0) {
-      for (final ForkJoinTask<?> t : ForkJoinTask.invokeAll(tasks)) {
-        t.join();
+      for (final ForkJoinTask<Boolean> t : ForkJoinTask.invokeAll(tasks)) {
+        try {
+          if (!(t.get().booleanValue())) {
+            return false;
+          }
+        } catch (final Throwable error) {
+          this._error(error);
+          return false;
+        }
       }
+      return true;
     }
+    return false;
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createExperimentInner(final ExperimentContext ec,
+  final boolean _createExperimentInner(final ExperimentContext ec,
       final Instance[] is, final Instance must, final DimensionSet dims,
       final Random r) {
-    final ArrayList<ForkJoinTask<?>> tasks;
+    final ArrayList<ForkJoinTask<Boolean>> tasks;
     Instance pick;
     int i, s;
 
@@ -117,30 +129,49 @@ public class RandomParallelExample extends RandomExample {
 
       tasks.add(new _CreateInstanceRunsOuter(ec, pick, dims));
     }
-
     if (tasks.size() > 0) {
-      for (final ForkJoinTask<?> t : ForkJoinTask.invokeAll(tasks)) {
-        t.join();
+      for (final ForkJoinTask<Boolean> t : ForkJoinTask.invokeAll(tasks)) {
+        try {
+          if (!(t.get().booleanValue())) {
+            return false;
+          }
+        } catch (final Throwable error) {
+          this._error(error);
+          return false;
+        }
       }
+      return true;
     }
+    return false;
   }
 
   /** {@inheritDoc} */
   @Override
-  final void _createInstanceRunsInner(final InstanceRunsContext irc,
+  final boolean _createInstanceRunsInner(final InstanceRunsContext irc,
       final DimensionSet dims, final Random r) {
-    final ArrayList<ForkJoinTask<?>> tasks;
+    final ArrayList<ForkJoinTask<Boolean>> tasks;
+    int trials;
 
     tasks = new ArrayList<>();
+    trials = RandomExample.MAX_TRIALS;
     do {
       tasks.add(new _CreateRunOuter(irc, dims));
-    } while (r.nextInt(10) > 0);
+    } while (((--trials) >= 0) && (r.nextInt(10) > 0));
 
     if (tasks.size() > 0) {
-      for (final ForkJoinTask<?> t : ForkJoinTask.invokeAll(tasks)) {
-        t.join();
+      for (final ForkJoinTask<Boolean> t : ForkJoinTask.invokeAll(tasks)) {
+        try {
+          if (!(t.get().booleanValue())) {
+            return false;
+          }
+        } catch (final Throwable error) {
+          this._error(error);
+          return false;
+        }
       }
+      return true;
     }
+    return false;
   }
 
   /**
@@ -155,7 +186,7 @@ public class RandomParallelExample extends RandomExample {
   }
 
   /** an action for creating an experiment */
-  private final class _CreateExperiments extends RecursiveAction {
+  private final class _CreateExperiments extends RecursiveTask<Boolean> {
     /** the serial version uid */
     private static final long serialVersionUID = 1L;
     /** the context */
@@ -185,14 +216,16 @@ public class RandomParallelExample extends RandomExample {
 
     /** {@inheritDoc} */
     @Override
-    protected final void compute() {
-      RandomParallelExample.this._superCreateExperimentSet(this.m_isc,
-          this.m_dims, this.m_insts, ThreadLocalRandom.current());
+    protected final Boolean compute() {
+      return Boolean.valueOf(//
+          RandomParallelExample.this._superCreateExperimentSet(this.m_isc,
+              this.m_dims, this.m_insts, ThreadLocalRandom.current()));
     }
   }
 
   /** an action for creating an experiment */
-  private final class _CreateExperimentOuter extends RecursiveAction {
+  private final class _CreateExperimentOuter
+      extends RecursiveTask<Boolean> {
     /** the serial version uid */
     private static final long serialVersionUID = 1L;
     /** the context */
@@ -239,15 +272,17 @@ public class RandomParallelExample extends RandomExample {
 
     /** {@inheritDoc} */
     @Override
-    protected final void compute() {
-      RandomParallelExample.this._createExperimentOuter(this.m_isc,
-          this.m_dims, this.m_is, this.m_must, this.m_params,
-          this.m_configs, ThreadLocalRandom.current());
+    protected final Boolean compute() {
+      return Boolean.valueOf(
+          RandomParallelExample.this._createExperimentOuter(this.m_isc,
+              this.m_dims, this.m_is, this.m_must, this.m_params,
+              this.m_configs, ThreadLocalRandom.current()));
     }
   }
 
   /** an action for creating an experiment */
-  private final class _CreateInstanceRunsOuter extends RecursiveAction {
+  private final class _CreateInstanceRunsOuter
+      extends RecursiveTask<Boolean> {
     /** the serial version uid */
     private static final long serialVersionUID = 1L;
     /** the context */
@@ -277,14 +312,15 @@ public class RandomParallelExample extends RandomExample {
 
     /** {@inheritDoc} */
     @Override
-    protected final void compute() {
-      RandomParallelExample.this._createInstanceRunsOuter(this.m_ec,
-          this.m_inst, this.m_dims, ThreadLocalRandom.current());
+    protected final Boolean compute() {
+      return Boolean.valueOf(//
+          RandomParallelExample.this._createInstanceRunsOuter(this.m_ec,
+              this.m_inst, this.m_dims, ThreadLocalRandom.current()));
     }
   }
 
   /** an action for creating an experiment */
-  private final class _CreateRunOuter extends RecursiveAction {
+  private final class _CreateRunOuter extends RecursiveTask<Boolean> {
     /** the serial version uid */
     private static final long serialVersionUID = 1L;
     /** the context */
@@ -309,9 +345,10 @@ public class RandomParallelExample extends RandomExample {
 
     /** {@inheritDoc} */
     @Override
-    protected final void compute() {
-      RandomParallelExample.this._createRun(this.m_ec, this.m_dims,
-          ThreadLocalRandom.current());
+    protected final Boolean compute() {
+      return Boolean.valueOf(//
+          RandomParallelExample.this._createRun(this.m_ec, this.m_dims,
+              ThreadLocalRandom.current()));
     }
   }
 
