@@ -428,7 +428,7 @@ public class RandomExample extends ExperimentSetCreator {
     DataPoint p1;
     ArrayList<Number> lst;
     EPrimitiveType type;
-    int dimIndex;
+    int dimIndex, trials;
     boolean isStrict;
     Number n;
 
@@ -441,41 +441,54 @@ public class RandomExample extends ExperimentSetCreator {
       lst = null;
     }
 
-    for (final Dimension d : dims) {
+    for (trials = RandomExample.MAX_TRIALS; (--trials) >= 0;) {
+
+      for (final Dimension d : dims) {
+        if (lst == null) {
+          s += ' ';
+        }
+
+        type = d.getDataType();
+        dimIndex = d.getIndex();
+        isStrict = d.getDirection().isStrict();
+        try {
+          n = NumberRandomization.forNumericalPrimitiveType(type)
+              .randomNumberBetween(//
+                  lower.get(dimIndex), (!(isStrict)), upper.get(dimIndex),
+                  (!(isStrict)), this.m_fullRange, r);
+        } catch (@SuppressWarnings("unused") final IllegalArgumentException exc) {
+          return null;
+        }
+
+        if (lst != null) {
+          lst.add(n);
+        } else {
+          s += n.toString();
+        }
+      }
+
       if (lst == null) {
-        s += ' ';
-      }
-
-      type = d.getDataType();
-      dimIndex = d.getIndex();
-      isStrict = d.getDirection().isStrict();
-      try {
-        n = NumberRandomization.forNumericalPrimitiveType(type)
-            .randomNumberBetween(//
-                lower.get(dimIndex), (!(isStrict)), upper.get(dimIndex),
-                (!(isStrict)), this.m_fullRange, r);
-      } catch (@SuppressWarnings("unused") final IllegalArgumentException exc) {
-        return null;
-      }
-
-      if (lst != null) {
-        lst.add(n);
+        p1 = dimss.getDataFactory().parseString(s);
       } else {
-        s += n.toString();
+        p1 = dimss.getDataFactory()
+            .parseNumbers(lst.toArray(new Number[lst.size()]));
       }
+
+      if (p1 == null) {
+        throw new IllegalStateException("Data point cannot be null."); //$NON-NLS-1$
+      }
+
+      try {
+        upper.validateAfter(p1);
+        p1.validateAfter(lower);
+        return p1;
+      } catch (@SuppressWarnings("unused") final Throwable ignore) {
+        //
+      }
+
     }
 
-    if (lst == null) {
-      p1 = dimss.getDataFactory().parseString(s);
-    } else {
-      p1 = dimss.getDataFactory()
-          .parseNumbers(lst.toArray(new Number[lst.size()]));
-    }
-
-    if (p1 == null) {
-      throw new IllegalStateException("Data point cannot be null."); //$NON-NLS-1$
-    }
-    return p1;
+    return null;
   }
 
   /**
@@ -494,7 +507,7 @@ public class RandomExample extends ExperimentSetCreator {
       final DimensionSet dims, final Random r) {
     ArrayList<DataPoint> dps;
     DataPoint p, before, after;
-    int j, k;
+    int j, size, index;
 
     dps = new ArrayList<>(30);
     dps.add(this._createDataPoint(dims, r));
@@ -502,18 +515,22 @@ public class RandomExample extends ExperimentSetCreator {
     j = 0;
 
     inner: for (j = RandomExample.MAX_TRIALS; (--j) >= 0;) {
-      k = dps.size();
-      if ((k > 1) && (r.nextInt(7) > 0)) {
-        k = r.nextInt(k - 1);
-        before = dps.get(k);
-        after = dps.get(k + 1);
-        p = this._createDataPointBetween(dims, dps.get(k), dps.get(k + 1),
-            r);
+      size = dps.size();
+
+      if ((size > (this.m_fullRange ? 0 : 3)) && (r.nextInt(8) <= 0)) {
+        break inner;
+      }
+
+      if ((size > 1) && (r.nextInt(7) > 0)) {
+        index = r.nextInt(size - 1);
+        before = dps.get(index);
+        after = dps.get(++index);
+        p = this._createDataPointBetween(dims, before, after, r);
         if (p != null) {
           try {
             after.validateAfter(p);
             p.validateAfter(before);
-            dps.add(k + 1, p);
+            dps.add(index, p);
           } catch (final Throwable error) {
             //
           }
@@ -524,40 +541,29 @@ public class RandomExample extends ExperimentSetCreator {
       p = this._createDataPoint(dims, r);
 
       if (p == null) {
-        continue;
+        continue inner;
       }
 
       before = null;
-      for (k = dps.size(); (--k) >= 0;) {
+      finder: for (index = size; (--index) >= 0;) {
         after = before;
-        before = dps.get(k);
+        before = dps.get(index);
 
-        try {
-          if (after != null) {
+        if (after != null) {
+          try {
             after.validateAfter(p);
+          } catch (final Throwable ignore) {
+            continue finder;
           }
-          p.validateAfter(before);
-          dps.add((k + 1), p);
-          if ((r.nextInt(4) <= 0) && (r.nextInt(dps.size()) > 0)) {
-            break inner;
-          }
-          continue inner;
-        } catch (final Throwable t) {
-          //
         }
-      }
 
-      if (before != null) {
         try {
-          before.validateAfter(p);
-          dps.add(0, p);
-          if ((r.nextInt(8) <= 0) && (r.nextInt(dps.size()) > 0)) {
-            break inner;
-          }
-          continue inner;
+          p.validateAfter(before);
+          dps.add((index + 1), p);
         } catch (final Throwable t) {
           //
         }
+        continue inner;
       }
     }
 
