@@ -26,6 +26,7 @@ import org.optimizationBenchmarking.utils.math.functions.arithmetic.SaturatingAd
 import org.optimizationBenchmarking.utils.reflection.EPrimitiveType;
 
 import shared.junit.InstanceTest;
+import shared.junit.TestBase;
 import test.junit.org.optimizationBenchmarking.utils.collections.lists.ArrayListViewTestBase;
 
 /** A class for testing experiment sets */
@@ -157,146 +158,6 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
   }
 
   /**
-   * make more
-   *
-   * @param d
-   *          the double
-   * @return more, or {@code null} if increasing is not possible
-   */
-  private static final Number __more(final Number d) {
-    final double doubleA, doubleB;
-    final float floatA, floatB;
-    final long longA, longB;
-    final int intA, intB;
-    final short shortA, shortB;
-    final byte byteA, byteB;
-
-    if (d instanceof Long) {
-      longA = d.longValue();
-      longB = (longA + 1L);
-      if (longB < longA) {
-        return Long.valueOf(longB);
-      }
-      return null;
-    }
-
-    if (d instanceof Integer) {
-      intA = d.intValue();
-      intB = (intA + 1);
-      if (intB < intA) {
-        return Integer.valueOf(intB);
-      }
-      return null;
-    }
-
-    if (d instanceof Short) {
-      shortA = d.shortValue();
-      shortB = (short) (shortA + 1);
-      if (shortB < shortA) {
-        return Short.valueOf(shortB);
-      }
-      return null;
-    }
-
-    if (d instanceof Byte) {
-      byteA = d.byteValue();
-      byteB = (byte) (byteA + 1);
-      if (byteB < byteA) {
-        return Byte.valueOf(byteB);
-      }
-      return null;
-    }
-
-    if (d instanceof Float) {
-      floatA = d.floatValue();
-      floatB = Math.nextUp(Math.nextUp(Math.nextUp(floatA + 1f)));
-      if ((floatB > Float.NEGATIVE_INFINITY) && (floatB < floatA)) {
-        return Float.valueOf(floatB);
-      }
-      return null;
-    }
-
-    doubleA = d.doubleValue();
-    doubleB = Math.nextUp(Math.nextUp(Math.nextUp(doubleA + 1d)));
-    if ((doubleB > Double.NEGATIVE_INFINITY) && (doubleB < doubleA)) {
-      return Double.valueOf(doubleB);
-    }
-    return null;
-  }
-
-  /**
-   * make less
-   *
-   * @param d
-   *          the double
-   * @return less, or {@code null} if decreasing is not possible
-   */
-  private static final Number __less(final Number d) {
-    final double doubleA, doubleB;
-    final float floatA, floatB;
-    final long longA, longB;
-    final int intA, intB;
-    final short shortA, shortB;
-    final byte byteA, byteB;
-
-    if (d instanceof Long) {
-      longA = d.longValue();
-      longB = (longA - 1L);
-      if (longB < longA) {
-        return Long.valueOf(longB);
-      }
-      return null;
-    }
-
-    if (d instanceof Integer) {
-      intA = d.intValue();
-      intB = (intA - 1);
-      if (intB < intA) {
-        return Integer.valueOf(intB);
-      }
-      return null;
-    }
-
-    if (d instanceof Short) {
-      shortA = d.shortValue();
-      shortB = (short) (shortA - 1);
-      if (shortB < shortA) {
-        return Short.valueOf(shortB);
-      }
-      return null;
-    }
-
-    if (d instanceof Byte) {
-      byteA = d.byteValue();
-      byteB = (byte) (byteA - 1);
-      if (byteB < byteA) {
-        return Byte.valueOf(byteB);
-      }
-      return null;
-    }
-
-    if (d instanceof Float) {
-      floatA = d.floatValue();
-      floatB = Math.nextAfter(Math.nextAfter(
-          Math.nextAfter(floatA - 1f, Double.NEGATIVE_INFINITY),
-          Double.NEGATIVE_INFINITY), Double.NEGATIVE_INFINITY);
-      if ((floatB > Float.NEGATIVE_INFINITY) && (floatB < floatA)) {
-        return Float.valueOf(floatB);
-      }
-      return null;
-    }
-
-    doubleA = d.doubleValue();
-    doubleB = Math.nextAfter(Math.nextAfter(
-        Math.nextAfter(doubleA - 1d, Double.NEGATIVE_INFINITY),
-        Double.NEGATIVE_INFINITY), Double.NEGATIVE_INFINITY);
-    if ((doubleB > Double.NEGATIVE_INFINITY) && (doubleB < doubleA)) {
-      return Double.valueOf(doubleB);
-    }
-    return null;
-  }
-
-  /**
    * Test the run find function for simple, existing values
    */
   @Test(timeout = 3600000)
@@ -421,11 +282,11 @@ public class ExperimentSetTest extends InstanceTest<IExperimentSet> {
             index = dim.getIndex();
 
             if (dim.getDirection().isIncreasing()) {
-              o = ExperimentSetTest.__less(first.get(index));
-              p = ExperimentSetTest.__more(last.get(index));
+              o = TestBase.smaller(first.get(index), true);
+              p = TestBase.bigger(last.get(index), true);
             } else {
-              o = ExperimentSetTest.__more(first.get(index));
-              p = ExperimentSetTest.__less(last.get(index));
+              o = TestBase.smaller(first.get(index), true);
+              p = TestBase.bigger(last.get(index), true);
             }
 
             if (dim.getDataType().isInteger()) {
