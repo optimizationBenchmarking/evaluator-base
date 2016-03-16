@@ -104,8 +104,8 @@ public class ModuleDescriptionsBuilder
    * Parse a evaluation module
    *
    * @param module
-   *          the module
-   * @return
+   *          the module name
+   * @return the module
    */
   protected IEvaluationModule parseModule(final String module) {
     try {
