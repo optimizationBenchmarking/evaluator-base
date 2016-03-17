@@ -25,6 +25,7 @@ import org.optimizationBenchmarking.evaluator.data.spec.EDimensionDirection;
 import org.optimizationBenchmarking.evaluator.data.spec.EDimensionType;
 import org.optimizationBenchmarking.utils.collections.lists.ArraySetView;
 import org.optimizationBenchmarking.utils.config.Configuration;
+import org.optimizationBenchmarking.utils.math.MathUtils;
 import org.optimizationBenchmarking.utils.parsers.LooseByteParser;
 import org.optimizationBenchmarking.utils.parsers.LooseDoubleParser;
 import org.optimizationBenchmarking.utils.parsers.LooseFloatParser;
@@ -368,6 +369,7 @@ public class RandomExample extends ExperimentSetCreator {
     ArrayList<Number> list;
     NumberParser<Number> numberParser;
     Number number;
+    NumberRandomization<Number> numberRandom;
 
     dimensionList = dimensionSet.getData();
 
@@ -381,11 +383,15 @@ public class RandomExample extends ExperimentSetCreator {
     for (final Dimension dimension : dimensionList) {
 
       numberParser = dimension.getParser();
-      number = NumberRandomization.forNumberParser(numberParser)
-          .randomValue(numberParser, this.m_fullRange, random);
-      if (number == null) {
-        return null;
-      }
+      numberRandom = NumberRandomization.forNumberParser(numberParser);
+      do {
+        number = numberRandom.randomValue(numberParser, this.m_fullRange,
+            random);
+        if (number == null) {
+          return null;
+        }
+      } while (!(MathUtils.isFinite(number.doubleValue())));
+
       if (list != null) {
         list.add(number);
       } else {

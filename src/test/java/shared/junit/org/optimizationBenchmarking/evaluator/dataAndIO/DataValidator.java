@@ -29,6 +29,7 @@ import org.optimizationBenchmarking.evaluator.data.spec.IPropertyValue;
 import org.optimizationBenchmarking.evaluator.data.spec.IRun;
 import org.optimizationBenchmarking.utils.collections.lists.ArrayListView;
 import org.optimizationBenchmarking.utils.error.ErrorUtils;
+import org.optimizationBenchmarking.utils.math.MathUtils;
 
 /** This static class provides tools to validate data. */
 public final class DataValidator {
@@ -452,8 +453,15 @@ public final class DataValidator {
    *          the data
    */
   public static final void checkRun(final IRun data) {
+    int i, j;
     Assert.assertNotNull(data);
     DataValidator.checkDataPointList(data.getData());
+
+    for (i = data.m(); (--i) >= 0;) {
+      for (j = data.n(); (--j) >= 0;) {
+        Assert.assertTrue(MathUtils.isFinite(data.getDouble(i, j)));
+      }
+    }
   }
 
   /**
