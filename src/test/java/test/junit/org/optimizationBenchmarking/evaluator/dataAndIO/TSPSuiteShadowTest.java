@@ -1,29 +1,32 @@
-package test.junit.org.optimizationBenchmarking.experimentation.dataAndIO;
+package test.junit.org.optimizationBenchmarking.evaluator.dataAndIO;
 
 import java.util.logging.Logger;
 
+import org.junit.experimental.categories.Category;
 import org.optimizationBenchmarking.evaluator.data.impl.shadow.ShadowExperimentSet;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
 
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.ExperimentSetCreator;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.TSPSuiteExample;
+import shared.junit.CategorySlowTests;
 import shared.junit.TestBase;
 import shared.junit.org.optimizationBenchmarking.evaluator.dataAndIO.ExperimentSetTest;
 
 /** Test the shadow of the first example data. */
-public class Example1ShadowTest extends ExperimentSetTest {
+@Category(CategorySlowTests.class)
+public class TSPSuiteShadowTest extends ExperimentSetTest {
 
   /** create */
-  public Example1ShadowTest() {
-    super(new __ExperimentSet1CreatorWrapper(TestBase.getNullLogger()));
+  public TSPSuiteShadowTest() {
+    super(new __TSPSuiteCreatorWrapper(TestBase.getNullLogger()));
   }
 
   /** wrap an experiment set creator */
-  private static final class __ExperimentSet1CreatorWrapper
+  private static final class __TSPSuiteCreatorWrapper
       extends ExperimentSetCreator {
 
     /** the example */
-    private final Example1 m_example1;
+    private final TSPSuiteExample m_tspSuiteExample;
 
     /**
      * create
@@ -31,16 +34,17 @@ public class Example1ShadowTest extends ExperimentSetTest {
      * @param logger
      *          the logger, or {@code null} to use the global logger
      */
-    protected __ExperimentSet1CreatorWrapper(final Logger logger) {
+    protected __TSPSuiteCreatorWrapper(final Logger logger) {
       super(logger);
-      this.m_example1 = new Example1(logger);
+      this.m_tspSuiteExample = new TSPSuiteExample(logger);
     }
 
     /** {@inheritDoc} */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     protected final IExperimentSet buildExperimentSet() throws Exception {
-      return new ShadowExperimentSet(null, this.m_example1.call(), null);
+      return new ShadowExperimentSet(null, this.m_tspSuiteExample.call(),
+          null);
     }
 
   }

@@ -1,32 +1,29 @@
-package test.junit.org.optimizationBenchmarking.experimentation.dataAndIO;
+package test.junit.org.optimizationBenchmarking.evaluator.dataAndIO;
 
 import java.util.logging.Logger;
 
-import org.junit.experimental.categories.Category;
 import org.optimizationBenchmarking.evaluator.data.impl.shadow.ShadowExperimentSet;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
 
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.ExperimentSetCreator;
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.TSPSuiteExample;
-import shared.junit.CategorySlowTests;
 import shared.junit.TestBase;
 import shared.junit.org.optimizationBenchmarking.evaluator.dataAndIO.ExperimentSetTest;
 
 /** Test the multiple-times shadowing of the first example data. */
-@Category(CategorySlowTests.class)
-public class TSPSuiteMultiShadowTest extends ExperimentSetTest {
+public class Example1MultiShadowTest extends ExperimentSetTest {
 
   /** create */
-  public TSPSuiteMultiShadowTest() {
-    super(new __TSPSuiteCreatorWrapper(TestBase.getNullLogger()));
+  public Example1MultiShadowTest() {
+    super(new __ExperimentSet1CreatorWrapper(TestBase.getNullLogger()));
   }
 
   /** wrap an experiment set creator */
-  private static final class __TSPSuiteCreatorWrapper
+  private static final class __ExperimentSet1CreatorWrapper
       extends ExperimentSetCreator {
 
     /** the example */
-    private final TSPSuiteExample m_tspSuiteExample;
+    private final Example1 m_example1;
 
     /**
      * create
@@ -34,9 +31,9 @@ public class TSPSuiteMultiShadowTest extends ExperimentSetTest {
      * @param logger
      *          the logger, or {@code null} to use the global logger
      */
-    protected __TSPSuiteCreatorWrapper(final Logger logger) {
+    protected __ExperimentSet1CreatorWrapper(final Logger logger) {
       super(logger);
-      this.m_tspSuiteExample = new TSPSuiteExample(logger);
+      this.m_example1 = new Example1(logger);
     }
 
     /** {@inheritDoc} */
@@ -46,7 +43,7 @@ public class TSPSuiteMultiShadowTest extends ExperimentSetTest {
       int i;
       IExperimentSet set;
 
-      set = this.m_tspSuiteExample.call();
+      set = this.m_example1.call();
       for (i = 10; (--i) >= 0;) {
         set = new ShadowExperimentSet(null, set, null);
       }

@@ -1,4 +1,4 @@
-package test.junit.org.optimizationBenchmarking.experimentation.dataAndIO;
+package test.junit.org.optimizationBenchmarking.evaluator.dataAndIO;
 
 import org.junit.experimental.categories.Category;
 

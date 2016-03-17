@@ -1,4 +1,4 @@
-package test.junit.org.optimizationBenchmarking.experimentation.dataAndIO;
+package test.junit.org.optimizationBenchmarking.evaluator.dataAndIO;
 
 import examples.org.optimizationBenchmarking.evaluator.dataAndIO.CSVEDIExample;
 import shared.junit.TestBase;
