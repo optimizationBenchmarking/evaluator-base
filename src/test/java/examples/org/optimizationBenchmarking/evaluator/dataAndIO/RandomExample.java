@@ -149,9 +149,9 @@ public class RandomExample extends ExperimentSetCreator {
     }
 
     if (this.m_fullRange) {
-      return ((size >= 2) && (done == 3));
+      return (size >= 1);
     }
-    return (size >= 1);
+    return ((size >= 2) && (done == 3));
   }
 
   /**
