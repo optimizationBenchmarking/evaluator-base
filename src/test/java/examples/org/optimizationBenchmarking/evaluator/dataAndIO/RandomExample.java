@@ -135,7 +135,7 @@ public class RandomExample extends ExperimentSetCreator {
       if ((--trials) < 0) {
         break;
       }
-      if (this.m_fullRange) {
+      if (!(this.m_fullRange)) {
         if (done != 3) {
           continue;
         }
