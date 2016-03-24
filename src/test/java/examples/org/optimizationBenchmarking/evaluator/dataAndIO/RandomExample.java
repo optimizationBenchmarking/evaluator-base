@@ -124,19 +124,34 @@ public class RandomExample extends ExperimentSetCreator {
    */
   boolean _createDimensionSet(final ExperimentSetContext dsc,
       final Random r) {
-    int size, trials;
+    int size, trials, done;
 
     size = 0;
     trials = RandomExample.MAX_TRIALS;
-    do {
-      if (!(this._createDimension(dsc, r))) {
-        return false;
-      }
+    done = 0;
+    for (;;) {
+      done |= (this.__createDimension(dsc, r) ? 1 : 2);
       ++size;
-    } while (((--trials) >= 0)
-        && ((size < (this.m_fullRange ? 1 : 2)) || (r.nextBoolean())));
+      if ((--trials) < 0) {
+        break;
+      }
+      if (this.m_fullRange) {
+        if (done != 3) {
+          continue;
+        }
+        if (size < 2) {
+          continue;
+        }
+      }
+      if (r.nextBoolean()) {
+        break;
+      }
+    }
 
-    return (size >= (this.m_fullRange ? 1 : 2));
+    if (this.m_fullRange) {
+      return ((size >= 2) && (done == 3));
+    }
+    return (size >= 1);
   }
 
   /**
@@ -146,10 +161,12 @@ public class RandomExample extends ExperimentSetCreator {
    *          the context
    * @param r
    *          the randomizer
-   * @return {@code true} on success, {@code false} on failure
+   * @return {@code true} if the created dimension is a time measure,
+   *         {@code false} if it is an objective value dimension.
    */
-  boolean _createDimension(final ExperimentSetContext dsc,
+  private final boolean __createDimension(final ExperimentSetContext dsc,
       final Random r) {
+    EDimensionType type;
 
     try (DimensionContext dc = dsc.createDimension()) {
 
@@ -161,13 +178,14 @@ public class RandomExample extends ExperimentSetCreator {
       }
       dc.setParser(
           RandomExample.PARSERS[r.nextInt(RandomExample.PARSERS.length)]);
-      dc.setType(EDimensionType.INSTANCES
-          .get(r.nextInt(EDimensionType.INSTANCES.size())));
+      type = EDimensionType.INSTANCES
+          .get(r.nextInt(EDimensionType.INSTANCES.size()));
+      dc.setType(type);
       dc.setDirection(EDimensionDirection.INSTANCES
           .get(r.nextInt(EDimensionDirection.INSTANCES.size())));
 
     }
-    return true;
+    return type.isTimeMeasure();
   }
 
   /**
