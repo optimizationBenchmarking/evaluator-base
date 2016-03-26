@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.optimizationBenchmarking.evaluator.data.spec.IDataElement;
-import org.optimizationBenchmarking.evaluator.data.spec.IDimension;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJobBuilder;
@@ -183,32 +182,5 @@ extends ToolTest<MT> {
     }
     Assert.assertNotNull(experimentSet);
     this.applyToExperimentSet(experimentSet);
-  }
-
-  /**
-   * create a logarithmic scaling string for a given dimension
-   *
-   * @param dimension
-   *          the dimension
-   * @return the string
-   */
-  protected static final String getLogarithmicScaling(
-      final IDimension dimension) {
-    return ((dimension.getDirection().isIncreasing() //
-        ? "ln(|" : "-ln(|") + //$NON-NLS-1$  //$NON-NLS-2$
-        dimension.getName() + "|+1)"); //$NON-NLS-1$
-  }
-
-  /**
-   * create a sqrt string for a given dimension
-   *
-   * @param dimension
-   *          the dimension
-   * @return the string
-   */
-  protected static final String getSqrt(final IDimension dimension) {
-    return ((dimension.getDirection().isIncreasing() //
-        ? "sqrt(|" : "-sqrt(|") + //$NON-NLS-1$  //$NON-NLS-2$
-        dimension.getName() + "|)"); //$NON-NLS-1$
   }
 }
