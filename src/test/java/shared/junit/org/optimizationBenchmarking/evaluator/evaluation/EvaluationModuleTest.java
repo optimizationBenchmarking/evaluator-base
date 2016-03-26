@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.optimizationBenchmarking.evaluator.data.spec.IDataElement;
+import org.optimizationBenchmarking.evaluator.data.spec.IDimension;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJobBuilder;
@@ -13,24 +14,23 @@ import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationModule;
 import org.optimizationBenchmarking.utils.config.Configuration;
 import org.optimizationBenchmarking.utils.reflection.ReflectionUtils;
 
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 import shared.DummyDocument;
 import shared.junit.TestBase;
 import shared.junit.org.optimizationBenchmarking.utils.tools.ToolTest;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 
 /**
  * Test the evaluation modules.
  *
  * @param <MT>
  *          the module type
- * @param
- *          <DT>
+ * @param <DT>
  *          the data element
  */
 @Ignore
 public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT extends IDataElement>
-    extends ToolTest<MT> {
+extends ToolTest<MT> {
 
   /**
    * create the module test
@@ -60,8 +60,8 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
 
     for (Class<? extends IEvaluationModule> moduleClass : list) {
       Assert.assertNotNull(module);
-      Assert.assertTrue(
-          IEvaluationModule.class.isAssignableFrom(moduleClass));
+      Assert.assertTrue(IEvaluationModule.class
+          .isAssignableFrom(moduleClass));
       Assert.assertTrue(classes.add(moduleClass));
 
       try {
@@ -70,8 +70,7 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
       } catch (final Throwable error) {
         throw new AssertionError(//
             ("Could not instantiate required module class " + //$NON-NLS-1$
-                moduleClass + '.'),
-            error);
+                moduleClass + '.'), error);
       }
       moduleClass = null;
 
@@ -176,7 +175,7 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
 
     try {
       experimentSet = new RandomExample(false, TestBase.getNullLogger())
-          .call();
+      .call();
     } catch (final Throwable error) {
       throw new AssertionError(
           "Failed to generate random example data set.", //$NON-NLS-1$
@@ -184,5 +183,32 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
     }
     Assert.assertNotNull(experimentSet);
     this.applyToExperimentSet(experimentSet);
+  }
+
+  /**
+   * create a logarithmic scaling string for a given dimension
+   *
+   * @param dimension
+   *          the dimension
+   * @return the string
+   */
+  protected static final String getLogarithmicScaling(
+      final IDimension dimension) {
+    return ((dimension.getDirection().isIncreasing() //
+        ? "ln(|" : "-ln(|") + //$NON-NLS-1$  //$NON-NLS-2$
+        dimension.getName() + "|+1)"); //$NON-NLS-1$
+  }
+
+  /**
+   * create a sqrt string for a given dimension
+   *
+   * @param dimension
+   *          the dimension
+   * @return the string
+   */
+  protected static final String getSqrt(final IDimension dimension) {
+    return ((dimension.getDirection().isIncreasing() //
+        ? "sqrt(|" : "-sqrt(|") + //$NON-NLS-1$  //$NON-NLS-2$
+        dimension.getName() + "|)"); //$NON-NLS-1$
   }
 }
