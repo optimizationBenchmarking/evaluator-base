@@ -3,6 +3,7 @@ package org.optimizationBenchmarking.evaluator.evaluation.impl.abstr;
 import java.util.logging.Logger;
 
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleType;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentSetJobBuilder;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentSetModule;
@@ -14,9 +15,14 @@ import org.optimizationBenchmarking.utils.config.Configuration;
 public abstract class ExperimentSetModule extends
     _EvaluationModule<IExperimentSet> implements IExperimentSetModule {
 
-  /** create */
-  protected ExperimentSetModule() {
-    super();
+  /**
+   * create
+   *
+   * @param type
+   *          the module type
+   */
+  protected ExperimentSetModule(final EModuleType type) {
+    super(type);
   }
 
   /** {@inheritDoc} */

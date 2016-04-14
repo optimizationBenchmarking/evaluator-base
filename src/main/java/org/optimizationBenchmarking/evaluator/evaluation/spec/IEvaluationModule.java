@@ -38,6 +38,13 @@ public interface IEvaluationModule extends ITool {
   public abstract EModuleRelationship getRelationship(
       final IEvaluationModule other);
 
+  /**
+   * Get the type of this module.
+   *
+   * @return the type of this module.
+   */
+  public abstract EModuleType getType();
+
   /** {@inheritDoc} */
   @Override
   public abstract IEvaluationJobBuilder use();

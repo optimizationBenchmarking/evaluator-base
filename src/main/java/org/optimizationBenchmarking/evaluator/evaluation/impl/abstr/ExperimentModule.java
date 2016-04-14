@@ -3,6 +3,7 @@ package org.optimizationBenchmarking.evaluator.evaluation.impl.abstr;
 import java.util.logging.Logger;
 
 import org.optimizationBenchmarking.evaluator.data.spec.IExperiment;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleType;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentJobBuilder;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentModule;
@@ -16,7 +17,7 @@ public abstract class ExperimentModule
 
   /** create */
   protected ExperimentModule() {
-    super();
+    super(EModuleType.BODY); // must be body module either way
   }
 
   /** {@inheritDoc} */

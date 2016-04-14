@@ -1,6 +1,7 @@
 package org.optimizationBenchmarking.evaluator.evaluation.impl.abstr;
 
 import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleRelationship;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleType;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationModule;
 import org.optimizationBenchmarking.utils.collections.lists.ArraySetView;
 import org.optimizationBenchmarking.utils.tools.impl.abstr.Tool;
@@ -11,9 +12,28 @@ import org.optimizationBenchmarking.utils.tools.impl.abstr.Tool;
 public abstract class EvaluationModule extends Tool
     implements IEvaluationModule {
 
-  /** create the module */
-  protected EvaluationModule() {
+  /** the module type */
+  private final EModuleType m_type;
+
+  /**
+   * create the module
+   *
+   * @param type
+   *          the module type
+   */
+  protected EvaluationModule(final EModuleType type) {
     super();
+    if (type == null) {
+      throw new IllegalArgumentException(
+          "Evaluation module type cannot be null."); //$NON-NLS-1$
+    }
+    this.m_type = type;
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public final EModuleType getType() {
+    return this.m_type;
   }
 
   /** {@inheritDoc} */

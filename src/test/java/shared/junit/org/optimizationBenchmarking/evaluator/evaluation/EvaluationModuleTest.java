@@ -7,9 +7,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.optimizationBenchmarking.evaluator.data.spec.IDataElement;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleType;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJobBuilder;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationModule;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentModule;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentSetModule;
 import org.optimizationBenchmarking.utils.config.Configuration;
 import org.optimizationBenchmarking.utils.reflection.ReflectionUtils;
 
@@ -40,6 +43,35 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
    */
   protected EvaluationModuleTest(final MT module) {
     super(module);
+  }
+
+  /** test the module type */
+  @Test(timeout = 3600000)
+  public void testType() {
+    final IEvaluationModule module;
+    final EModuleType type;
+
+    module = this.getInstance();
+    Assert.assertNotNull(module);
+
+    type = module.getType();
+    Assert.assertNotNull(type);
+
+    switch (type) {
+      case DESCRIPTION:
+      case APPENDIX: {
+        Assert.assertTrue(module instanceof IExperimentSetModule);
+        break;
+      }
+      case BODY: {
+        Assert.assertTrue((module instanceof IExperimentSetModule)
+            || (module instanceof IExperimentModule));
+        break;
+      }
+      default: {
+        throw new AssertionError("Unsupported type: " + type); //$NON-NLS-1$
+      }
+    }
   }
 
   /** test whether we can correctly obtain the list of required modules. */

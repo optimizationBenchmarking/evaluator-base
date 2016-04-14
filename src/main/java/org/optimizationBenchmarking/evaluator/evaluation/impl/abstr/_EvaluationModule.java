@@ -3,6 +3,7 @@ package org.optimizationBenchmarking.evaluator.evaluation.impl.abstr;
 import java.util.logging.Logger;
 
 import org.optimizationBenchmarking.evaluator.data.spec.IElementSet;
+import org.optimizationBenchmarking.evaluator.evaluation.spec.EModuleType;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationJob;
 import org.optimizationBenchmarking.utils.config.Configuration;
 
@@ -16,9 +17,14 @@ import org.optimizationBenchmarking.utils.config.Configuration;
 abstract class _EvaluationModule<DT extends IElementSet>
     extends EvaluationModule {
 
-  /** create the module */
-  _EvaluationModule() {
-    super();
+  /**
+   * create the module
+   *
+   * @param type
+   *          the module type
+   */
+  _EvaluationModule(final EModuleType type) {
+    super(type);
   }
 
   /**
