@@ -28,11 +28,6 @@ public class EvaluationModulesBuilder
   /** the entries */
   private ArrayList<EvaluationModuleEntry> m_entries;
 
-  /** create the modules builder */
-  public EvaluationModulesBuilder() {
-    this(null);
-  }
-
   /**
    * create the modules builder
    *
