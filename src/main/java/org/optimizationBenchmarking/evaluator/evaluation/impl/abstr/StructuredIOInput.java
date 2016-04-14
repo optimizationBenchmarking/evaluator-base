@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import org.optimizationBenchmarking.evaluator.data.impl.ref.ExperimentSetContext;
 import org.optimizationBenchmarking.evaluator.data.spec.IExperimentSet;
+import org.optimizationBenchmarking.evaluator.data.spec.builders.IExperimentSetContext;
 import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationInput;
 import org.optimizationBenchmarking.utils.io.structured.spec.IInputJobBuilder;
 
@@ -14,7 +15,7 @@ import org.optimizationBenchmarking.utils.io.structured.spec.IInputJobBuilder;
 public class StructuredIOInput implements IEvaluationInput {
 
   /** the input job builder to use */
-  private IInputJobBuilder<ExperimentSetContext> m_builder;
+  private IInputJobBuilder<IExperimentSetContext> m_builder;
 
   /** the logger */
   private Logger m_logger;
@@ -28,7 +29,7 @@ public class StructuredIOInput implements IEvaluationInput {
    *          the logger
    */
   public StructuredIOInput(
-      final IInputJobBuilder<ExperimentSetContext> builder,
+      final IInputJobBuilder<IExperimentSetContext> builder,
       final Logger logger) {
     super();
 
@@ -44,7 +45,7 @@ public class StructuredIOInput implements IEvaluationInput {
   @Override
   public final IExperimentSet getExperimentSet() throws IOException {
     final Logger logger;
-    IInputJobBuilder<ExperimentSetContext> builder;
+    IInputJobBuilder<IExperimentSetContext> builder;
 
     synchronized (this) {
       builder = this.m_builder;
