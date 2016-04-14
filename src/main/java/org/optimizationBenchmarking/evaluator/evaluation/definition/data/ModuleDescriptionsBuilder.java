@@ -100,25 +100,6 @@ public class ModuleDescriptionsBuilder
     this.addModule(name, cclazz, description);
   }
 
-  /**
-   * Parse a evaluation module
-   *
-   * @param module
-   *          the module name
-   * @return the module
-   */
-  protected IEvaluationModule parseModule(final String module) {
-    try {
-      return ReflectionUtils.getInstanceByName(IEvaluationModule.class,
-          module);
-    } catch (final RuntimeException rtexp) {
-      throw rtexp;
-    } catch (final Throwable error) {
-      throw new RuntimeException(((("Failed to parse module '" + //$NON-NLS-1$
-          module) + '\'') + '.'), error);
-    }
-  }
-
   /** {@inheritDoc} */
   @Override
   protected final ModuleDescriptions compile() {

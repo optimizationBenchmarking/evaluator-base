@@ -65,7 +65,7 @@ public final class EvaluationModuleEntryBuilder
    *          the module
    */
   public final void setModule(final String module) {
-    this.setModule(((ModuleDescriptionsBuilder) (//
+    this.setModule(((EvaluationModulesBuilder) (//
     this.getOwner())).parseModule(module));
   }
 

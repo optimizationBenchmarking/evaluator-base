@@ -2,6 +2,7 @@ package org.optimizationBenchmarking.evaluator.evaluation.definition.data;
 
 import java.util.ArrayList;
 
+import org.optimizationBenchmarking.evaluator.evaluation.spec.IEvaluationModule;
 import org.optimizationBenchmarking.utils.collections.lists.ArrayListView;
 import org.optimizationBenchmarking.utils.collections.lists.ArraySetView;
 import org.optimizationBenchmarking.utils.config.Configuration;
@@ -9,10 +10,11 @@ import org.optimizationBenchmarking.utils.config.ConfigurationBuilder;
 import org.optimizationBenchmarking.utils.hierarchy.BuilderFSM;
 import org.optimizationBenchmarking.utils.hierarchy.FSM;
 import org.optimizationBenchmarking.utils.hierarchy.HierarchicalFSM;
+import org.optimizationBenchmarking.utils.reflection.ReflectionUtils;
 import org.optimizationBenchmarking.utils.text.textOutput.MemoryTextOutput;
 
 /** The builder for evaluation setups. */
-public final class EvaluationModulesBuilder
+public class EvaluationModulesBuilder
     extends _ConfigEntryBuilder<EvaluationModules> {
   /** the flag for the root configuration set */
   private static final int FLAG_ROOT_CONFIG_SET = (_ConfigEntryBuilder.FLAG_CONFIG_BUILDER_CREATED << 1);
@@ -202,5 +204,31 @@ public final class EvaluationModulesBuilder
     list = null;
 
     return new EvaluationModules(config, view);
+  }
+
+  /**
+   * Parse a evaluation module
+   *
+   * @param module
+   *          the module name
+   * @return the module
+   */
+  @SuppressWarnings("resource")
+  protected IEvaluationModule parseModule(final String module) {
+    final HierarchicalFSM owner;
+
+    owner = this.getOwner();
+    if (owner instanceof EvaluationModulesBuilder) {
+      return ((EvaluationModulesBuilder) owner).parseModule(module);
+    }
+    try {
+      return ReflectionUtils.getInstanceByName(IEvaluationModule.class,
+          module);
+    } catch (final RuntimeException rtexp) {
+      throw rtexp;
+    } catch (final Throwable error) {
+      throw new RuntimeException(((("Failed to parse module '" + //$NON-NLS-1$
+          module) + '\'') + '.'), error);
+    }
   }
 }
