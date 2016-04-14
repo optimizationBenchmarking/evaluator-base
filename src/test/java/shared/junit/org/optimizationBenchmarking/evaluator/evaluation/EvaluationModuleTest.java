@@ -16,24 +16,23 @@ import org.optimizationBenchmarking.evaluator.evaluation.spec.IExperimentSetModu
 import org.optimizationBenchmarking.utils.config.Configuration;
 import org.optimizationBenchmarking.utils.reflection.ReflectionUtils;
 
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
-import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 import shared.DummyDocument;
 import shared.junit.TestBase;
 import shared.junit.org.optimizationBenchmarking.utils.tools.ToolTest;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.Example1;
+import examples.org.optimizationBenchmarking.evaluator.dataAndIO.RandomExample;
 
 /**
  * Test the evaluation modules.
  *
  * @param <MT>
  *          the module type
- * @param
- *          <DT>
+ * @param <DT>
  *          the data element
  */
 @Ignore
 public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT extends IDataElement>
-    extends ToolTest<MT> {
+extends ToolTest<MT> {
 
   /**
    * create the module test
@@ -92,8 +91,8 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
 
     for (Class<? extends IEvaluationModule> moduleClass : list) {
       Assert.assertNotNull(module);
-      Assert.assertTrue(
-          IEvaluationModule.class.isAssignableFrom(moduleClass));
+      Assert.assertTrue(IEvaluationModule.class
+          .isAssignableFrom(moduleClass));
       Assert.assertTrue(classes.add(moduleClass));
 
       try {
@@ -102,8 +101,7 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
       } catch (final Throwable error) {
         throw new AssertionError(//
             ("Could not instantiate required module class " + //$NON-NLS-1$
-                moduleClass + '.'),
-            error);
+                moduleClass + '.'), error);
       }
       moduleClass = null;
 
@@ -208,7 +206,7 @@ public abstract class EvaluationModuleTest<MT extends IEvaluationModule, DT exte
 
     try {
       experimentSet = new RandomExample(false, TestBase.getNullLogger())
-          .call();
+      .call();
     } catch (final Throwable error) {
       throw new AssertionError(
           "Failed to generate random example data set.", //$NON-NLS-1$
