@@ -11,6 +11,9 @@ import org.optimizationBenchmarking.utils.io.EArchiveType;
 /** A class for creating experiment sets */
 public final class BBOBExample extends ExperimentSetCreator {
 
+  /** the resource name */
+  public static final String RESOURCE_NAME = "bbobExampleData.zip";//$NON-NLS-1$
+
   /**
    * create
    *
@@ -29,7 +32,7 @@ public final class BBOBExample extends ExperimentSetCreator {
         this.getLogger())) {
 
       BBOBInput.getInstance().use().setDestination(ec)
-          .addArchiveResource(BBOBExample.class, "bbobExampleData.zip", //$NON-NLS-1$
+          .addArchiveResource(BBOBExample.class, BBOBExample.RESOURCE_NAME,
               EArchiveType.ZIP)
           .create().call();
       return ec.create();

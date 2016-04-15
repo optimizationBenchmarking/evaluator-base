@@ -11,6 +11,9 @@ import org.optimizationBenchmarking.utils.io.EArchiveType;
 /** A class for creating experiment sets */
 public final class TSPSuiteExample extends ExperimentSetCreator {
 
+  /** the resource name */
+  public static final String RESOURCE_NAME = "tspSuiteExampleData.zip";//$NON-NLS-1$
+
   /**
    * create
    *
@@ -29,7 +32,7 @@ public final class TSPSuiteExample extends ExperimentSetCreator {
 
       TSPSuiteInput.getInstance().use().setDestination(esc)
           .addArchiveResource(TSPSuiteExample.class,
-              "tspSuiteExampleData.zip", EArchiveType.ZIP)//$NON-NLS-1$
+              TSPSuiteExample.RESOURCE_NAME, EArchiveType.ZIP)
           .create().call();
 
       return esc.create();
