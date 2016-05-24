@@ -75,24 +75,12 @@ class _EvaluationJobBuilder<DT extends IElementSet, MT extends _EvaluationModule
 
   /** {@inheritDoc} */
   @Override
-  protected final void validate() {
-    super.validate();
+  public synchronized final IEvaluationJob create() throws Exception {
     if (this.m_config == null) {
       throw new IllegalArgumentException(//
           "Configuration must be set for job."); //$NON-NLS-1$
     }
-    if (this.m_data == null) {
-      throw new IllegalArgumentException(//
-          "Data must be set for job."); //$NON-NLS-1$
-    }
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public synchronized final IEvaluationJob create() throws Exception {
-    this.validate();
     return this.m_module.createJob(this.m_data, this.m_config,
         this.getLogger());
   }
-
 }
