@@ -84,7 +84,7 @@ public enum EDimensionType {
 
   /** the value set view */
   public static final ArraySetView<EDimensionType> INSTANCES = new ArraySetView<>(
-      EDimensionType.values());
+      EDimensionType.values(), false);
 
   /**
    * Are the measurements given in this dimension machine dependent? If you

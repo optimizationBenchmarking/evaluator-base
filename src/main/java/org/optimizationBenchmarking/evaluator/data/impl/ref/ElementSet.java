@@ -83,7 +83,7 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
       index1++;
     }
 
-    this.m_data = new ArraySetView<>(mdata);
+    this.m_data = new ArraySetView<>(mdata, false);
   }
 
   /**

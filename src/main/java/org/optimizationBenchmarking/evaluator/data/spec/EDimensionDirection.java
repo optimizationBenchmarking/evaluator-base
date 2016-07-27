@@ -34,7 +34,7 @@ public enum EDimensionDirection {
 
   /** the dimension direction instances */
   public static final ArraySetView<EDimensionDirection> INSTANCES = new ArraySetView<>(
-      EDimensionDirection.values());
+      EDimensionDirection.values(), false);
 
   /** is the direction increasing? */
   private final transient boolean m_isIncreasing;

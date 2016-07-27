@@ -17,7 +17,7 @@ public final class ExperimentSetExamples {
       TSPSuiteExample.class, //
       RandomBBOBParallelExample.class, //
       RandomTSPSuiteParallelExample.class, //
-      RandomParallelExample.class });
+      RandomParallelExample.class }, false);
 
   /** the forbidden constructor */
   private ExperimentSetExamples() {

@@ -130,7 +130,7 @@ PT extends IDataElement> extends //
         // ignore
       }
 
-      this.m_data = new ArrayListView(array);
+      this.m_data = new ArrayListView(array, false);
     }
     this._checkDiscardOrig();
   }

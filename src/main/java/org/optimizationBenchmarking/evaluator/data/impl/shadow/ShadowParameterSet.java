@@ -45,7 +45,7 @@ public class ShadowParameterSet extends
   @Override
   final IParameterSetting _createSettingFromArray(
       final IPropertyValue[] values) {
-    return new _ShadowParameterSetting(new ArraySetView(values));
+    return new _ShadowParameterSetting(new ArraySetView(values, false));
   }
 
 }

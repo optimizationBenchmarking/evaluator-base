@@ -30,7 +30,7 @@ public class ModuleDescriptions extends ArrayListView<ModuleDescription> {
    *          the array of descriptions
    */
   protected ModuleDescriptions(final ModuleDescription[] description) {
-    super(description);
+    super(description, false);
     Arrays.sort(description, new __Cmp());
   }
 

@@ -45,7 +45,7 @@ public class ShadowFeatureSet
   @Override
   final IFeatureSetting _createSettingFromArray(
       final IPropertyValue[] values) {
-    return new _ShadowFeatureSetting(new ArraySetView(values));
+    return new _ShadowFeatureSetting(new ArraySetView(values, false));
   }
 
 }
