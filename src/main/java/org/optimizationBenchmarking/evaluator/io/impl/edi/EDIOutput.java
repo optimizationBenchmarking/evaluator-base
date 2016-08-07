@@ -110,7 +110,7 @@ public final class EDIOutput extends XMLOutputTool<Object>
     if ((logger != null) && (logger.isLoggable(IOTool.FINE_LOG_LEVEL))) {
       logger.log(IOTool.FINE_LOG_LEVEL, //
           "Begin writing instance of " + //$NON-NLS-1$
-              TextUtils.className(data.getClass()));
+              TextUtils.className(data));
     }
     write: {
       if (data instanceof IExperimentSet) {
@@ -149,14 +149,13 @@ public final class EDIOutput extends XMLOutputTool<Object>
       }
 
       throw new IllegalArgumentException((((("Cannot deal with input " //$NON-NLS-1$
-          + data) + ' ') + '(') + TextUtils.className(data.getClass()))
-          + ')');
+          + data) + ' ') + '(') + TextUtils.className(data)) + ')');
     }
 
     if ((logger != null) && (logger.isLoggable(IOTool.FINE_LOG_LEVEL))) {
       logger.log(IOTool.FINE_LOG_LEVEL, //
           "Finished writing instance of " + //$NON-NLS-1$
-              TextUtils.className(data.getClass()));
+              TextUtils.className(data));
     }
   }
 

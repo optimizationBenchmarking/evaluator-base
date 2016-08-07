@@ -42,7 +42,7 @@ abstract class _NamedIDObjectSet<DT extends _IDObject>
 
     if ((this.m_name = TextUtils.normalize(name)) == null) {
       throw new IllegalArgumentException(//
-          "Instances of " + TextUtils.className(this.getClass()) + //$NON-NLS-1$
+          "Instances of " + TextUtils.className(this) + //$NON-NLS-1$
               " must have a non-empty name, but name '" + //$NON-NLS-1$
               name + "' was provided."); //$NON-NLS-1$
 

@@ -68,12 +68,12 @@ class _ShadowDataElement<OT extends IDataElement, ST extends IDataElement>
     if (owner == null) {
       throw new IllegalArgumentException(
           "Cannot set null owner to an instance of " + //$NON-NLS-1$
-              TextUtils.className(this.getClass()));
+              TextUtils.className(this));
     }
     if (this.m_owner != null) {
       throw new IllegalStateException(//
           "Instance of "//$NON-NLS-1$
-              + TextUtils.className(this.getClass()) + //
+              + TextUtils.className(this) + //
               " already has an owner.");//$NON-NLS-1$
     }
     this.m_owner = owner;

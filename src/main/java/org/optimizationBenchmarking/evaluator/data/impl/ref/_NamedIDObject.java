@@ -33,7 +33,7 @@ abstract class _NamedIDObject extends _IDObject
 
     if ((this.m_name = TextUtils.normalize(name)) == null) {
       throw new IllegalArgumentException(//
-          "Instances of " + TextUtils.className(this.getClass()) + //$NON-NLS-1$
+          "Instances of " + TextUtils.className(this) + //$NON-NLS-1$
               " must have a non-empty name, but name '" + //$NON-NLS-1$
               name + "' was provided."); //$NON-NLS-1$
 
@@ -44,7 +44,7 @@ abstract class _NamedIDObject extends _IDObject
   /** {@inheritDoc} */
   @Override
   public void toText(final ITextOutput textOut) {
-    textOut.append(this.getClass().getSimpleName());
+    textOut.append(TextUtils.className(this));
     textOut.append("(name='"); //$NON-NLS-1$
     textOut.append(this.m_name);
     textOut.append("',id="); //$NON-NLS-1$

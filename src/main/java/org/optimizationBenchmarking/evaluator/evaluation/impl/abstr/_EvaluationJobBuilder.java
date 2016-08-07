@@ -42,7 +42,7 @@ class _EvaluationJobBuilder<DT extends IElementSet, MT extends _EvaluationModule
     if (module == null) {
       throw new IllegalArgumentException(//
           "Owning module of an "//$NON-NLS-1$
-              + TextUtils.className(this.getClass()) + " cannot be null."); //$NON-NLS-1$
+              + TextUtils.className(this) + " cannot be null."); //$NON-NLS-1$
     }
     this.m_module = module;
   }

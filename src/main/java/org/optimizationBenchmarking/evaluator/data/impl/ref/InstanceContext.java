@@ -169,7 +169,7 @@ public final class InstanceContext extends _NamedContext<Instance>
     }
 
     throw new IllegalArgumentException(//
-        "Class " + TextUtils.className(bound.getClass()) + //$NON-NLS-1$
+        "Class " + TextUtils.className(bound) + //$NON-NLS-1$
             " is not allowed for a boundary, but '" + bound + //$NON-NLS-1$
             "', which is an instance of that class, was provided."); //$NON-NLS-1$
 

@@ -3,6 +3,7 @@ package org.optimizationBenchmarking.evaluator.data.impl.ref;
 import java.util.ArrayList;
 
 import org.optimizationBenchmarking.utils.hierarchy.HierarchicalFSM;
+import org.optimizationBenchmarking.utils.text.TextUtils;
 
 /**
  * the hierarchical experiment set element
@@ -67,9 +68,9 @@ abstract class _HierarchicalCollection<CCT, CET extends _Context<CCT>, RT>
 
     if (i <= 0) {
       throw new IllegalStateException("Each " + //$NON-NLS-1$
-          this.getClass().getSimpleName()
+          TextUtils.className(this)
           + " must have at least one child of class " + //$NON-NLS-1$
-          clazz.getSimpleName() + ", but " + this + //$NON-NLS-1$
+          TextUtils.className(clazz) + ", but " + this + //$NON-NLS-1$
           " has none."); //$NON-NLS-1$
     }
 

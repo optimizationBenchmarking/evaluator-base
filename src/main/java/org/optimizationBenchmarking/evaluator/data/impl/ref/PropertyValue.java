@@ -3,6 +3,7 @@ package org.optimizationBenchmarking.evaluator.data.impl.ref;
 import java.util.Map;
 
 import org.optimizationBenchmarking.evaluator.data.spec.IPropertyValue;
+import org.optimizationBenchmarking.utils.text.TextUtils;
 import org.optimizationBenchmarking.utils.text.textOutput.ITextOutput;
 
 /**
@@ -87,10 +88,10 @@ public abstract class PropertyValue<OT extends Property<?>> extends
     owner = this.getOwner();
     throw new UnsupportedOperationException(((((((((//
     "Cannot change the value of the " + //$NON-NLS-1$
-        this.getClass().getSimpleName()) + //
+        TextUtils.className(this)) + //
         " with name '") + this.m_name) + //$NON-NLS-1$
         "' belonging to ") + //$NON-NLS-1$
-        owner.getClass().getSimpleName()) + //
+        TextUtils.className(owner)) + //
         " with name '") + //$NON-NLS-1$
         this.getOwner().getName()) + '\'') + '.');
   }

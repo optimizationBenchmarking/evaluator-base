@@ -121,7 +121,7 @@ public abstract class EvaluationJob<DT extends IElementSet>
 
     if (data == null) {
       throw new IllegalArgumentException(//
-          TextUtils.className(caller.getClass()) + //
+          TextUtils.className(caller) + //
               " cannot accept null as input data."); //$NON-NLS-1$
     }
 
@@ -129,18 +129,18 @@ public abstract class EvaluationJob<DT extends IElementSet>
     if (list == null) {
       throw new IllegalArgumentException(//
           "The getData() method of the "//$NON-NLS-1$
-              + TextUtils.className(data.getClass()) + //
+              + TextUtils.className(data) + //
               " provided as input to the " //$NON-NLS-1$
-              + TextUtils.className(caller.getClass()) + //
+              + TextUtils.className(caller) + //
               " returned null.");//$NON-NLS-1$
     }
 
     if (list.isEmpty()) {
       throw new IllegalArgumentException(//
           "The getData() method of the "//$NON-NLS-1$
-              + TextUtils.className(data.getClass()) + //
+              + TextUtils.className(data) + //
               " provided as input to the " //$NON-NLS-1$
-              + TextUtils.className(caller.getClass()) + //
+              + TextUtils.className(caller) + //
               " returned an empty set.");//$NON-NLS-1$
     }
   }
@@ -267,7 +267,7 @@ public abstract class EvaluationJob<DT extends IElementSet>
   /** {@inheritDoc} */
   @Override
   public void toText(final ITextOutput textOut) {
-    textOut.append(TextUtils.className(this.getClass()));
+    textOut.append(TextUtils.className(this));
     if (this.m_data != null) {
       textOut.append(" on "); //$NON-NLS-1$
       textOut.append(this.m_data);

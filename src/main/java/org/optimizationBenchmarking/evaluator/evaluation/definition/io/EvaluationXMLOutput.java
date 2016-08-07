@@ -78,7 +78,7 @@ public final class EvaluationXMLOutput
 
           moduleElement.attributeEncoded(EvaluationXML.NAMESPACE_URI,
               EvaluationXML.ATTRIBUTE_CLASS,
-              TextUtils.className(module.getModule().getClass()));
+              TextUtils.className(module.getModule()));
           config = module.getConfiguration();
           if ((config != rootConfig) && (!(config.isEmpty()))) {
             cxo.use().setLogger(job.getLogger()).setSource(config)

@@ -61,7 +61,7 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
 
     if (data.length <= 0) {
       throw new IllegalArgumentException(//
-          TextUtils.className(this.getClass())//
+          TextUtils.className(this)//
               + " must contain at least one element."); //$NON-NLS-1$
     }
 
@@ -106,7 +106,7 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
    */
   void _setOwnerOfElement(final DT element, final int index) {
     throw new UnsupportedOperationException(//
-        TextUtils.className(this.getClass())
+        TextUtils.className(this)
             + (((" does not know how to become an owner of '" + //$NON-NLS-1$
                 element) + "' at index ") + index) //$NON-NLS-1$
             + '.');
@@ -131,18 +131,18 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
     if (element == null) {
       throw new IllegalArgumentException(//
           "No element in an instance of " + //$NON-NLS-1$
-              TextUtils.className(this.getClass()) + " can be null."); //$NON-NLS-1$
+              TextUtils.className(this) + " can be null."); //$NON-NLS-1$
     }
     if (element == this) {
       throw new IllegalArgumentException("An instance of " + //$NON-NLS-1$
-          TextUtils.className(this.getClass()) + //
+          TextUtils.className(this) + //
           " cannot contain itself!"); //$NON-NLS-1$
     }
     if (element.getClass() == this.getClass()) {
       throw new IllegalArgumentException(((("An instance of " + //$NON-NLS-1$
-          TextUtils.className(this.getClass())) + //
+          TextUtils.className(this)) + //
           " cannot contain another instance of ") + //$NON-NLS-1$
-          TextUtils.className(this.getClass())) + '.');
+          TextUtils.className(this)) + '.');
     }
   }
 
@@ -162,26 +162,26 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
 
     if (before == after) {
       throw new IllegalArgumentException("No two elements in a " + //$NON-NLS-1$
-          TextUtils.className(this.getClass())
+          TextUtils.className(this)
           + " can be the same (referentially speaking), but '" + before + //$NON-NLS-1$
           "' is included twice!"); //$NON-NLS-1$
     }
 
     if (before.equals(after) || after.equals(before)) {
       throw new IllegalArgumentException("No two elements in a " + //$NON-NLS-1$
-          TextUtils.className(this.getClass()) + " can be equal, but '" //$NON-NLS-1$
+          TextUtils.className(this) + " can be equal, but '" //$NON-NLS-1$
           + before + "' and '" + after + "' are.");//$NON-NLS-1$//$NON-NLS-2$
     }
 
     if (before.getClass() != after.getClass()) {
       throw new IllegalArgumentException((((((((((//
       "The elements of an " + //$NON-NLS-1$
-          TextUtils.className(this.getClass()))
+          TextUtils.className(this))
           + " must belong to the same class, but element '") + before) + //$NON-NLS-1$
           "' belongs to class ") + //$NON-NLS-1$
-          TextUtils.className(before.getClass())) + " whereas element '") + //$NON-NLS-1$
+          TextUtils.className(before)) + " whereas element '") + //$NON-NLS-1$
           after) + "' belongs to class ") + //$NON-NLS-1$
-          TextUtils.className(after.getClass())) + '.');
+          TextUtils.className(after)) + '.');
     }
 
     cra = ((Comparable) before).compareTo(after);
@@ -192,7 +192,7 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
           + after + "' according to the " + //$NON-NLS-1$
           TextUtils.className(Comparable.class) + //
           "-implementations of these elements, but it comes before in an instance of" //$NON-NLS-1$
-          + TextUtils.className(this.getClass()) + '.');
+          + TextUtils.className(this) + '.');
     }
 
     if ((cra == 0) || (crb == 0)) {
@@ -201,7 +201,7 @@ public class ElementSet<DT extends Comparable<?>> extends _IDObject {
           "-implementations of '" + before + //$NON-NLS-1$
           "' or '" + after + //$NON-NLS-1$
           "' returns 0, which is not permitted in an instance of " + //$NON-NLS-1$
-          TextUtils.className(this.getClass()) + '.');
+          TextUtils.className(this) + '.');
     }
   }
 

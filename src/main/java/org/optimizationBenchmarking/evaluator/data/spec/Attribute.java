@@ -79,9 +79,9 @@ public abstract class Attribute<ST extends IDataElement, RT>
             " but you supplied "//$NON-NLS-1$
             + ((data == null) ? "null" //$NON-NLS-1$
                 : " an instance of "//$NON-NLS-1$
-                    + TextUtils.className(data.getClass()))
+                    + TextUtils.className(data))
             + " to attribute " + //$NON-NLS-1$
-            TextUtils.className(this.getClass()) + '.');//
+            TextUtils.className(this) + '.');//
   }
 
   /**

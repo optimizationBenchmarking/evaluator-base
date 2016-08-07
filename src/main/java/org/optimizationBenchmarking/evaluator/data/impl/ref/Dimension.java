@@ -62,7 +62,7 @@ public class Dimension extends _NamedIDObject implements IDimension {
           "The isInteger feature of the dimension type must fit to the integer feature of the parser's bounds. However, the dimension type is " //$NON-NLS-1$
               + this.m_primitiveType + " with the isInteger feature "//$NON-NLS-1$
               + this.m_primitiveType.isInteger() + " and the parser ("//$NON-NLS-1$
-              + TextUtils.className(parser.getClass()) + " for "//$NON-NLS-1$
+              + TextUtils.className(parser) + " for "//$NON-NLS-1$
               + TextUtils.className(parser.getOutputClass())
               + ") has the areBoundsInteger feature "//$NON-NLS-1$
               + parser.areBoundsInteger() + '.');

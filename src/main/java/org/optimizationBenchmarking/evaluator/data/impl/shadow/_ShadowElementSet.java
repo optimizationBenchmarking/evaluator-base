@@ -99,7 +99,7 @@ PT extends IDataElement> extends //
                 }
                 throw new IllegalArgumentException(//
                     "Instance of " //$NON-NLS-1$
-                        + TextUtils.className(spv.getClass()) + //
+                        + TextUtils.className(spv) + //
                         "without owner encountered."); //$NON-NLS-1$
               }
             }

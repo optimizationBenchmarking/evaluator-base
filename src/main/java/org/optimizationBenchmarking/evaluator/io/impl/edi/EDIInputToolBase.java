@@ -15,6 +15,7 @@ import org.optimizationBenchmarking.utils.error.ErrorUtils;
 import org.optimizationBenchmarking.utils.error.RethrowMode;
 import org.optimizationBenchmarking.utils.io.structured.impl.abstr.IOJob;
 import org.optimizationBenchmarking.utils.io.structured.impl.abstr.XMLInputTool;
+import org.optimizationBenchmarking.utils.text.TextUtils;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -143,7 +144,7 @@ public abstract class EDIInputToolBase<T> extends XMLInputTool<T> {
     throw new IllegalArgumentException(//
         "Data element '" + data + //$NON-NLS-1$
             "' is not supported as input destation by " + //$NON-NLS-1$
-            this.getClass().getSimpleName());
+            TextUtils.className(this));
   }
 
   /** {@inheritDoc} */
