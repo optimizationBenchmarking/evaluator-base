@@ -17,7 +17,7 @@ import org.optimizationBenchmarking.utils.text.TextUtils;
  *          the shadow type
  */
 class _ShadowDataElement<OT extends IDataElement, ST extends IDataElement>
-    extends DataElement implements Comparable<_ShadowDataElement<OT, ST>> {
+    extends DataElement implements Comparable<IDataElement> {
 
   /** the owner */
   OT m_owner;
@@ -149,8 +149,11 @@ class _ShadowDataElement<OT extends IDataElement, ST extends IDataElement>
   }
 
   /** {@inheritDoc} */
+  @SuppressWarnings("rawtypes")
   @Override
-  public int compareTo(final _ShadowDataElement<OT, ST> o) {
+  public int compareTo(final IDataElement o) {
+    final _ShadowDataElement other;
+
     if (o == null) {
       return (-1);
     }
@@ -158,15 +161,26 @@ class _ShadowDataElement<OT extends IDataElement, ST extends IDataElement>
       return 0;
     }
 
-    if ((this.m_shadowUnpacked == o.m_shadowUnpacked) || //
-        (this == o.m_shadowUnpacked) || //
-        (this.m_shadowUnpacked == o) || //
-        (this == o.m_shadowDelegate) || //
+    if ((this.m_shadowUnpacked == o) || //
         (this.m_shadowDelegate == o)) {
       return 0;
     }
 
-    return Compare.compare(this.m_shadowUnpacked, o.m_shadowUnpacked);
+    if (o instanceof _ShadowDataElement) {
+      other = ((_ShadowDataElement) o);
+
+      if ((this.m_shadowUnpacked == other.m_shadowUnpacked) || //
+          (this == other.m_shadowUnpacked) || //
+          (this == other.m_shadowDelegate)) {
+        return 0;
+      }
+
+      return Compare.compare(this.m_shadowUnpacked,
+          other.m_shadowUnpacked);
+    }
+
+    return ((this != this.m_shadowUnpacked)
+        ? Compare.compare(this.m_shadowUnpacked, o) : (-1));
   }
 
   /** {@inheritDoc} */

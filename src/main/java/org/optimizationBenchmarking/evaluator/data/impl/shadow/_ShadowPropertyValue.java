@@ -2,6 +2,7 @@ package org.optimizationBenchmarking.evaluator.data.impl.shadow;
 
 import java.util.Map;
 
+import org.optimizationBenchmarking.evaluator.data.spec.IDataElement;
 import org.optimizationBenchmarking.evaluator.data.spec.IProperty;
 import org.optimizationBenchmarking.evaluator.data.spec.IPropertyValue;
 import org.optimizationBenchmarking.utils.comparison.Compare;
@@ -58,10 +59,12 @@ class _ShadowPropertyValue<OT extends IProperty, ST extends IPropertyValue>
   }
 
   /** {@inheritDoc} */
+  @SuppressWarnings("rawtypes")
   @Override
-  public final int compareTo(final _ShadowDataElement<OT, ST> o) {
+  public final int compareTo(final IDataElement o) {
     final IPropertyValue pv;
     int res;
+    final _ShadowDataElement other;
 
     if (o == null) {
       return (-1);
@@ -70,19 +73,27 @@ class _ShadowPropertyValue<OT extends IProperty, ST extends IPropertyValue>
       return 0;
     }
 
-    if ((this.m_shadowUnpacked == o.m_shadowUnpacked) || //
-        (this == o.m_shadowUnpacked) || //
-        (this.m_shadowUnpacked == o) || //
-        (this == o.m_shadowDelegate) || //
+    if ((this.m_shadowUnpacked == o) || //
         (this.m_shadowDelegate == o)) {
       return 0;
     }
 
+    if (o instanceof _ShadowDataElement) {
+      other = ((_ShadowDataElement) o);
+      if ((this.m_shadowUnpacked == other.m_shadowUnpacked) || //
+          (this == other.m_shadowUnpacked) || //
+          (this == other.m_shadowDelegate)) {
+        return 0;
+      }
+    } else {
+      other = null;
+    }
+
     findWayToCompare: {
-      if (o instanceof _ShadowPropertyValue) {
+      if (other instanceof _ShadowPropertyValue) {
         res = Compare.compare(//
             this.m_shadowUnpacked.getOwner(), //
-            o.m_shadowUnpacked.getOwner());
+            other.m_shadowUnpacked.getOwner());
         if (res != 0) {
           return res;
         }
@@ -93,9 +104,7 @@ class _ShadowPropertyValue<OT extends IProperty, ST extends IPropertyValue>
       if (o instanceof IPropertyValue) {
         pv = ((IPropertyValue) o);
 
-        res = Compare.compare(//
-            this.getOwner(), //
-            pv.getOwner());
+        res = Compare.compare(this.getOwner(), pv.getOwner());
         if (res != 0) {
           return res;
         }
@@ -108,6 +117,12 @@ class _ShadowPropertyValue<OT extends IProperty, ST extends IPropertyValue>
       }
     }
 
-    return Compare.compare(this.m_shadowUnpacked, o.m_shadowUnpacked);
+    if (other != null) {
+      return Compare.compare(this.m_shadowUnpacked,
+          other.m_shadowUnpacked);
+    }
+
+    return ((this != this.m_shadowUnpacked)
+        ? Compare.compare(this.m_shadowUnpacked, o) : (-1));
   }
 }
