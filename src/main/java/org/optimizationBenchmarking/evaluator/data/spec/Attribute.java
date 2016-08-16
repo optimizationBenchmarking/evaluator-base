@@ -3,7 +3,6 @@ package org.optimizationBenchmarking.evaluator.data.spec;
 import java.util.concurrent.Callable;
 import java.util.logging.Logger;
 
-import org.optimizationBenchmarking.utils.hash.HashObject;
 import org.optimizationBenchmarking.utils.text.TextUtils;
 
 /**
@@ -26,8 +25,7 @@ import org.optimizationBenchmarking.utils.text.TextUtils;
  * @param <RT>
  *          the result type of the attribute
  */
-public abstract class Attribute<ST extends IDataElement, RT>
-    extends HashObject {
+public abstract class Attribute<ST extends IDataElement, RT> {
 
   /** the attribute type */
   final EAttributeType m_type;
@@ -63,6 +61,12 @@ public abstract class Attribute<ST extends IDataElement, RT>
   @Override
   public boolean equals(final Object o) {
     return ((o != null) && (o.getClass() == this.getClass()));
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public int hashCode() {
+    return this.getClass().hashCode();
   }
 
   /**
