@@ -539,8 +539,9 @@ public class RandomExample extends ExperimentSetCreator {
       return false;
     }
 
-    index = 0;
+    index = -1;
     loop: for (final Dimension dim : dimensions) {
+      ++index;
       floa = dim.getDataType().isFloat();
       ok: switch (dim.getDirection()) {
         case INCREASING: {
