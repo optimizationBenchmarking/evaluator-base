@@ -23,6 +23,7 @@ import org.optimizationBenchmarking.evaluator.data.impl.ref.InstanceSet;
 import org.optimizationBenchmarking.evaluator.data.impl.ref.RunContext;
 import org.optimizationBenchmarking.evaluator.data.spec.EDimensionDirection;
 import org.optimizationBenchmarking.evaluator.data.spec.EDimensionType;
+import org.optimizationBenchmarking.utils.collections.lists.ArrayListView;
 import org.optimizationBenchmarking.utils.collections.lists.ArraySetView;
 import org.optimizationBenchmarking.utils.config.Configuration;
 import org.optimizationBenchmarking.utils.math.MathUtils;
@@ -517,6 +518,95 @@ public class RandomExample extends ExperimentSetCreator {
   }
 
   /**
+   * check if a data point truly comes after another one
+   *
+   * @param after
+   *          the point to come afterwards
+   * @param before
+   *          the point to come before
+   * @param dimensions
+   *          the dimension set
+   * @return {@code true} if {@code after} comes after {@code before}
+   */
+  @SuppressWarnings("incomplete-switch")
+  private static final boolean __validateAfter(final DataPoint after,
+      final DataPoint before, final ArrayListView<Dimension> dimensions) {
+    int index;
+    boolean floa;
+    try {
+      after.validateAfter(before);
+    } catch (@SuppressWarnings("unused") final Throwable error) {
+      return false;
+    }
+
+    index = 0;
+    loop: for (final Dimension dim : dimensions) {
+      floa = dim.getDataType().isFloat();
+      ok: switch (dim.getDirection()) {
+        case INCREASING: {
+          if (floa) {
+            if (after.getDouble(index) >= before.getDouble(index)) {
+              continue loop;
+            }
+            break ok;
+          }
+          if (after.getLong(index) >= before.getLong(index)) {
+            continue loop;
+          }
+          break ok;
+        }
+        case INCREASING_STRICTLY: {
+          if (floa) {
+            if (after.getDouble(index) > before.getDouble(index)) {
+              continue loop;
+            }
+            break ok;
+          }
+          if (after.getLong(index) > before.getLong(index)) {
+            continue loop;
+          }
+          break ok;
+
+        }
+        case DECREASING: {
+          if (floa) {
+            if (after.getDouble(index) <= before.getDouble(index)) {
+              continue loop;
+            }
+            break ok;
+          }
+          if (after.getLong(index) <= before.getLong(index)) {
+            continue loop;
+          }
+          break ok;
+
+        }
+        case DECREASING_STRICTLY: {
+
+          if (floa) {
+            if (after.getDouble(index) < before.getDouble(index)) {
+              continue loop;
+            }
+            break ok;
+          }
+          if (after.getLong(index) < before.getLong(index)) {
+            continue loop;
+          }
+          break ok;
+        }
+      }
+
+      throw new IllegalArgumentException(//
+          "Inconsistent 'validateBefore' for points " //$NON-NLS-1$
+              + before + " and " //$NON-NLS-1$
+              + after + " for dimension " //$NON-NLS-1$
+              + dim);
+    }
+
+    return true;
+  }
+
+  /**
    * create a random run
    *
    * @param random
@@ -527,13 +617,15 @@ public class RandomExample extends ExperimentSetCreator {
    *          the instance run context
    * @return {@code true} if a run was created, {@code false} otherwise
    */
-  @SuppressWarnings("unused")
   boolean _createRun(final InstanceRunsContext instanceRuns,
       final DimensionSet dimensionSet, final Random random) {
     ArrayList<DataPoint> dataPoints;
+    final ArrayListView<Dimension> dims;
     DataPoint point, before, after;
     int trial, size, index;
 
+    dims = instanceRuns.getOwner().getBuilder().getDimensionSet()
+        .getData();
     dataPoints = new ArrayList<>(30);
     dataPoints.add(this._createDataPoint(dimensionSet, random));
 
@@ -554,12 +646,9 @@ public class RandomExample extends ExperimentSetCreator {
         point = this._createDataPointBetween(dimensionSet, before, after,
             random);
         if (point != null) {
-          try {
-            after.validateAfter(point);
-            point.validateAfter(before);
+          if (RandomExample.__validateAfter(after, point, dims)
+              && RandomExample.__validateAfter(point, before, dims)) {
             dataPoints.add(index, point);
-          } catch (final Throwable error) {
-            //
           }
           continue mainLoop;
         }
@@ -577,24 +666,29 @@ public class RandomExample extends ExperimentSetCreator {
         before = dataPoints.get(index);
 
         if (after != null) {
-          try {
-            after.validateAfter(point);
-          } catch (final Throwable ignore) {
+          if (!(RandomExample.__validateAfter(after, point, dims))) {
             continue finder;
           }
         }
 
-        try {
-          point.validateAfter(before);
+        if (RandomExample.__validateAfter(point, before, dims)) {
           dataPoints.add((index + 1), point);
           continue mainLoop;
-        } catch (final Throwable t) {
-          //
         }
       }
     }
 
     if (dataPoints.size() > (this.m_fullRange ? 0 : 3)) {
+      before = null;
+      for (final DataPoint current : dataPoints) {
+        if (before != null) {
+          if (!(RandomExample.__validateAfter(current, before, dims))) {
+            return false;
+          }
+        }
+        before = current;
+      }
+
       try (final RunContext run = instanceRuns.createRun()) {
         for (final DataPoint dataPoint : dataPoints) {
           if (random.nextBoolean()) {
