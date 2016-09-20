@@ -439,17 +439,6 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       d.setType(EDimensionType.QUALITY_PROBLEM_DEPENDENT);
       d.setParser(p2);
     }
-
-    try (final IDimensionContext d = esb.createDimension()) {
-      d.setName("F"); //$NON-NLS-1$
-      d.setDescription(//
-          "the best tour length discovered so far (" + TSPSuiteInput.LENGTH //$NON-NLS-1$
-              + ") divided by the length of the optimal tour"); //$NON-NLS-1$
-      d.setDirection(EDimensionDirection.DECREASING);
-      d.setType(EDimensionType.QUALITY_PROBLEM_INDEPENDENT);
-      d.setParser(bd);
-    }
-
   }
 
   /**
