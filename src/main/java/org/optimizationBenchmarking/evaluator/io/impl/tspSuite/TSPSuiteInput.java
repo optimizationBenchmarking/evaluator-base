@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.optimizationBenchmarking.evaluator.data.spec.EDimensionDirection;
 import org.optimizationBenchmarking.evaluator.data.spec.EDimensionType;
@@ -473,6 +474,9 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
    */
   public static final String EDGE_GREEDY = "edgeGreedy"; //$NON-NLS-1$
 
+  /** the split pattern */
+  static final Pattern PATTERN = Pattern.compile("\\s+");//$NON-NLS-1$
+
   /** create */
   TSPSuiteInput() {
     super();
@@ -548,13 +552,14 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       d.setParser(p2);
     }
 
-    try (final IDimensionContext d = esb.createDimension()) {
-      d.setName("AT"); //$NON-NLS-1$
-      d.setDescription("the consumed clock runtime in milliseconds"); //$NON-NLS-1$
-      d.setDirection(EDimensionDirection.INCREASING);
-      d.setType(EDimensionType.RUNTIME_CPU);
-      d.setParser(p1);
-    }
+    // try (final IDimensionContext d = esb.createDimension()) {
+    // d.setName("AT"); //$NON-NLS-1$
+    // d.setDescription("the consumed clock runtime in milliseconds");
+    // //$NON-NLS-1$
+    // d.setDirection(EDimensionDirection.INCREASING);
+    // d.setType(EDimensionType.RUNTIME_CPU);
+    // d.setParser(p1);
+    // }
 
     try (final IDimensionContext d = esb.createDimension()) {
       d.setName("NT"); //$NON-NLS-1$
@@ -10091,6 +10096,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
     IRunContext run;
     int state, idx;
     _TSPSuiteInputToken token;
+    String[] strings;
 
     token = ((_TSPSuiteInputToken) (job.getToken()));
 
@@ -10125,7 +10131,10 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
           state = 0;
         } else {
           if (state == 1) {
-            run.addDataPoint(s);
+            strings = TSPSuiteInput.PATTERN.split(s);
+            run.addDataPoint(Long.valueOf(strings[0]),
+                Long.valueOf(strings[1]), Double.valueOf(strings[3]),
+                Long.valueOf(strings[4]));
           } else {
             if (state == 2) {
               idx = s.indexOf(':');
