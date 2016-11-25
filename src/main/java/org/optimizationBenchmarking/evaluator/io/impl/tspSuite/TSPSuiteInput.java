@@ -634,7 +634,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
           Double.valueOf(0.8173580207060342d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN,
           "The fraction of distances shorter than the mean.", //$NON-NLS-1$
-          Double.valueOf(0.20563075007493833d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN,
           "The average of the distance to the 1th nearest neighbor of each city divided by the mean city distance.", //$NON-NLS-1$
           Double.valueOf(0.3030505660725403d), null);
@@ -719,7 +719,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6907646962502046d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.1817586376289504d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.29443671196987065d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -791,7 +791,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7365179671182991d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.5462432389010871d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.26947999785786964d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -863,7 +863,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7097672064777328d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(14.591093117408906d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -934,7 +934,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7626020728643216d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.5826005025125628d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.25963149078726966d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1005,7 +1005,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7320472702681017d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.35480210446683397d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.228912348268629d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1076,7 +1076,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7372787746385526d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.9782517980313703d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2605488598149193d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1147,7 +1147,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7321550571810486d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.707114213574929d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2517451358978167d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1219,7 +1219,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7978903080843875d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.706136051754558d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2632666294693348d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1291,7 +1291,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7647269771444966d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.135411685951994d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.24299512288419242d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1363,7 +1363,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6725782838270089d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(4.44524468683d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.22897108719635315d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1435,7 +1435,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.675154524803212d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(4.837022557979819d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2292778276718263d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1507,7 +1507,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6663786706782814d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(5.709212144621421d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2261513910206239d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1578,7 +1578,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7321100917431194d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(13.232651140908022d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.1459578138477221d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1649,7 +1649,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7116597221521606d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(8.408559408387898d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.18986269030155672d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1721,7 +1721,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.10110164164377021d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.72192408633319d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0032512045125151793d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1793,7 +1793,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6960405387463673d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(7.331494239308422d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2073848968091227d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1865,7 +1865,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.742810491806635d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.2317047266361778d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.15009396628133242d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -1936,7 +1936,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7730995122879546d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.690178341860027d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.17403566027383946d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2007,7 +2007,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7448257212788529d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.2611719351282389d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.17836050768601402d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2079,7 +2079,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.679497637001015d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(8.154419960025155d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.1870038169127216d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2151,7 +2151,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7648621538080675d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.1213880257323792d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2095101747371314d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2223,7 +2223,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7488560706936206d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(41.98038978331921d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.21062825323810674d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2294,7 +2294,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6822936536341266d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.5901730898564863d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.17711328123463685d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2366,7 +2366,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.4515882789847204d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.629404269321d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.14905449681740587d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2438,7 +2438,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6848343333431858d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(11.887703327126376d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.15565424289894483d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2509,7 +2509,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6768443822109258d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.8669270409116012d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.11830629410559404d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2581,7 +2581,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6556858451903219d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(15.821482268722075d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.15343766772470221d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2652,7 +2652,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7688101747295852d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(46.656127421847145d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.11837632235825508d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2724,7 +2724,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6844392680366463d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.9126999628649006d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.4681228930653819d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2796,7 +2796,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6485614322131082d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(18.65923583162293d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.14694646730992572d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2867,7 +2867,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7306070247016668d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(90.97443160798656d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.17043833039140038d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -2938,7 +2938,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7282633712182156d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.40641941395427167d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.1138232688297867d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3010,7 +3010,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7483849409604822d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.263213919359293d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.10333370833524762d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3081,7 +3081,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7516571068236664d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(64.00310442258952d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.11563246546936201d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3152,7 +3152,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7590960144270756d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.1858296093973912d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08307123775990152d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3223,7 +3223,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7509576415835879d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.25917771275517d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08491046808376151d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3294,7 +3294,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7780355271171986d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.1789652779683477d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08243787316285288d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3365,7 +3365,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7493158565834753d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.317998034422988d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.084960858760225d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3436,7 +3436,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7645585038961233d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.1186597317242826d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08354336352791945d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3507,7 +3507,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7740704047409132d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(8.91549795039129d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.09908908299324674d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3579,7 +3579,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7791446289068285d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.862680677196281d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.15614907439293393d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3650,7 +3650,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7486133492141339d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(149.4867932459889d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.14946635839230246d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3721,7 +3721,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7352481126513418d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(5.148852034665302d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.06114620749090355d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3792,7 +3792,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8955443586805293d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.9640580094128579d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.037151520649033d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3863,7 +3863,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.736009802674928d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(17.979238674326933d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.09661758264905987d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -3934,7 +3934,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7573719383652521d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.2643708850737974d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.05057397493549234d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4006,7 +4006,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6771513280475743d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.856043665682348d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.12180513119212732d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4077,7 +4077,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7478955895010984d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(24.36666810626658d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08080474304648134d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4148,7 +4148,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8023317824750528d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.4705324492274212d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08981400604656822d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4220,7 +4220,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.743619492229201d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2.249015639677145d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.07465376109650677d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4291,7 +4291,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7783013708557708d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.8728580050281076d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.022908809835536538d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4362,7 +4362,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7451853870070203d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(31.855605940911662d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08931963830132723d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4433,7 +4433,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7574869394760784d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(7.1633495593343275d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.06797282327206637d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4504,7 +4504,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7661082272445168d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(7.081034109848593d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.06705560133946831d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4575,7 +4575,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7221802306840086d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1.5832633395019309d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03055598079163943d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4646,7 +4646,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7513942606946815d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(4.666820542788918d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.06890251037312388d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4718,7 +4718,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6778044188562709d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(96.51265620409714d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0803568869526587d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4789,7 +4789,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8781900933896771d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(50.027051643199215d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.409809104973991d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4860,7 +4860,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(1.0287711813846878d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.6594273458065905d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -4931,7 +4931,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7446800546117084d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(180.96897668384966d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.08432781000062162d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5002,7 +5002,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6868235232465473d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(26.174246160263145d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.04574303080757869d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5073,7 +5073,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.757613554375463d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(12.778267390673427d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.05686381893627721d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5144,7 +5144,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7472647578848658d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(13.151223211108144d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.059521813724587286d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5216,7 +5216,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6902661917256926d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(17.557951522635083d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.10799378903478084d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5288,7 +5288,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7436628388473183d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.7101561827416996d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0706212155996212d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5359,7 +5359,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7293774699242611d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(145.3118940701066d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.07519680494855986d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5430,7 +5430,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7829946607029158d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3.081962576368289d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.02551659861384164d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5502,7 +5502,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7404996893911655d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(4.920181283876597d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.07031357137705302d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5573,7 +5573,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7394312442607898d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(340.1831818181818d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.05898114669421488d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5644,7 +5644,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8795440665380853d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(7.358925382027475d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.026733480207498772d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5715,7 +5715,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7523461424478909d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(339.0917754176816d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.06840405564745124d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5786,7 +5786,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7517888405554217d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(19.230837262752246d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.04808320788339374d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5858,7 +5858,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.73600423779867d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(28.595293349410884d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.039005335157102965d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -5930,7 +5930,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.9253368217533922d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2467.510807204837d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.035330774468332424d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6002,7 +6002,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8468690990121253d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2950.3780396728534d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03092466772315221d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6073,7 +6073,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7453543186301215d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(153.73058283523193d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.049964708395909226d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6145,7 +6145,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6783133465536149d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(3784.5300940408447d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03459227939868207d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6216,7 +6216,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7972642949140414d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(73.67220349929228d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0129105960376588d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6288,7 +6288,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7248796411785978d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(18.050914335444954d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.050071430953620245d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6359,7 +6359,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.719782844340844d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(23.309670634463984d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03525216356437566d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6431,7 +6431,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7339841138444965d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(57.2669816666129d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.05725781275424003d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6503,7 +6503,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6783900700517335d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(4772.42184695986d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.04261389158524641d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6574,7 +6574,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7058608986336895d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(148.8079270879062d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.05432562235828614d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6646,7 +6646,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7037905290404863d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(175.209026261595d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03812427088634273d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6717,7 +6717,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.6836029404116196d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(21.891019674113615d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.035337373909351204d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6788,7 +6788,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8903359783117081d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(487.5109454000209d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.2771148753195014d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6859,7 +6859,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7074138969501177d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2540.9275584515144d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0574181378185617d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -6930,7 +6930,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7347645603501098d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(151.0499272245282d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.035828567692777064d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7001,7 +7001,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7410437718023356d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(925.592382131177d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.04676581734016448d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7072,7 +7072,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.8060873977926309d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(68.15433336676497d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.009919415986138519d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7143,7 +7143,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7359168275838976d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(172.70329563445696d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.038987155630395d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7214,7 +7214,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7125302635383874d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(29.252036280166273d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.042085618582234204d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7285,7 +7285,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7398277708137938d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(235.62102050304264d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03561804198158656d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7357,7 +7357,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7391076163209712d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1482.5178605669098d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0358707294979536d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7429,7 +7429,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.733626368003197d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(0.8783517423265187d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.02230514451113796d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7500,7 +7500,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7366149406066892d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(80.97916659785616d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.02829288181597558d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7571,7 +7571,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.879148865644471d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1069.0708595672186d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.24467305715394422d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7642,7 +7642,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7390991854868584d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(97.3598079217939d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.023133554400001602d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7713,7 +7713,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7450967529222695d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(78.34251175806813d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.01874874035280988d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7784,7 +7784,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7344329672133765d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(604.9073338296415d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.032546374672322735d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7855,7 +7855,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7238591276684097d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(661.675937567293d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.02185456870856994d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7926,7 +7926,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7305639163549513d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(126.21257022806952d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.016811361098486313d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -7997,7 +7997,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7353812616675254d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(123.71967793685748d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.017626362694461394d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8069,7 +8069,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7382648635562756d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(989.8950758188481d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03155260418408028d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8140,7 +8140,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7987397518391826d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(826.6813591145735d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.005817328553104189d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8211,7 +8211,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7409765206469396d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(379.13480346202374d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.036496601352713647d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8282,7 +8282,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7033097541409986d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1576.0738094218527d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.011876301082903443d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8353,7 +8353,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7380490757555817d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1058.0931061515585d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.02269721477236486d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8424,7 +8424,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.741716419588322d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(182.3496838163721d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.01570120137788874d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8495,7 +8495,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7383437828011348d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1523.4690990045626d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.021705416281737933d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8566,7 +8566,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7427817166038891d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(240.80798233260415d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.013819926289507187d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8637,7 +8637,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7403535489838111d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1466.73244926432d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.022077903747121177d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8708,7 +8708,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7390036877259163d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2119.703912265606d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.021381771563663398d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8779,7 +8779,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7344259643876287d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(1065.6390643383031d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.03872722265835299d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8850,7 +8850,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7390097363556802d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(463.6629957846241d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.01916268062842498d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8921,7 +8921,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7377548869212571d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2681.0606226847835d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0215103893088136d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -8992,7 +8992,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7116594749548573d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(8165.798130001285d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.006056298466729155d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9064,7 +9064,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7351430213381372d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(5669.698725354445d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.017672506262991956d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9135,7 +9135,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7297720893036187d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2567.798345691706d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.009356447549097185d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9206,7 +9206,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.726705341230287d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2673.9356396115854d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.009072093924351857d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9277,7 +9277,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7690951671863323d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(68.55711551836833d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.006725770657941861d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9348,7 +9348,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7263158741459024d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(10065.088488559553d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.007973213569501073d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9420,7 +9420,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7004214316153076d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(695.0365266862315d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.006673810377873234d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9492,7 +9492,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7273214914321661d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(35798.78793001588d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.008803569399683417d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9563,7 +9563,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7265792578692172d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(13431.457326640804d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.009330215554906558d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9635,7 +9635,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.7353013471076891d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(55651.948439255044d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.00864620561256336d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9706,7 +9706,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.22824916743898277d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(2110.796667519827d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.0064621291731706216d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
@@ -9777,7 +9777,7 @@ public class TSPSuiteInput extends FileInputTool<IExperimentSetContext>
       i.setFeatureValue(TSPSuiteInput.LARGEST_MEAN_DIST_3, null,
           Double.valueOf(0.07443857127202039d), null);
       i.setFeatureValue(TSPSuiteInput.FRAC_DIST_BELOW_MEAN, null,
-          Double.valueOf(-1433.6386979044082d), null);
+          Double.valueOf(0.0d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_MEAN, null,
           Double.valueOf(0.004588612428267869d), null);
       i.setFeatureValue(TSPSuiteInput.NEAR_1_STDDEV, null,
